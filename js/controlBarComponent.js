@@ -23,7 +23,6 @@ class ControlBarComponent extends mixinObservable(HTMLElement) {
         this.shadow = this.attachShadow({mode: 'open'});
         this.render();
         this.videoElementSubscription = this.videoElementSubscription.bind(this);
-
     }
 
     addStyle () {
@@ -44,7 +43,7 @@ class ControlBarComponent extends mixinObservable(HTMLElement) {
         template.innerHTML = `
         <button type="button" id="play-pause" class="play">Play</button>
         <input type="range" id="seek-bar" value="0">
-        <button type="button" id="mute">Mute</button>
+        <button type="button" id="mute" onClick="{console.log('onclick', this)}">Mute</button>
         <input type="range" id="volume-bar" min="0" max="1" step="0.1" value="1">
         <button type="button" id="full-screen">Full-Screen</button>`;
         return template;

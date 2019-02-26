@@ -1,7 +1,5 @@
 import './videoComponent.js'
 import './controlBarComponent.js'
-import './testComponent.js'
-
 
 const videoWidth = 640;
 const videoHeight = 365;
@@ -13,7 +11,7 @@ const getStyle = () => {
         position: relative;
     }
   `
-}
+};
 
 class PlayerComponent extends HTMLElement {
     connectedCallback () {
@@ -56,5 +54,5 @@ class PlayerComponent extends HTMLElement {
     }
 }
 
-customElements.define('player-component', PlayerComponent)
+customElements.define('player-component', PlayerComponent);
 
