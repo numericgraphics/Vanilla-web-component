@@ -1,7 +1,3 @@
-// Import stylesheets
-// import '../css/style.css';
-// import stylesheet from '../css/style.css';
-
 import './colorType.js'
 import './videoComponent.js'
 import './controlBarComponent.js'

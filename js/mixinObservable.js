@@ -6,7 +6,6 @@ export const mixinObservable = Base => class extends Base {
     }
 
     subscribe(fun) {
-        console.log("subscribe", fun);
         this.observers.push(fun);
     }
 
