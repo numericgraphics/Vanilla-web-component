@@ -7,8 +7,7 @@ const appDiv = document.getElementById('app');
 const url = 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'
 appDiv.innerHTML = `<player-component url=${url} id="videoPlayer"></player-component>`;
 
-window.onload = function() {
-    console.log("window loaded");
-    this.videoPlayer = document.getElementById('videoPlayer');
-    this.videoPlayer.registerSubscriptions();
-};
+document.addEventListener("DOMContentLoaded",() => {
+    const videoPlayer = document.getElementById('videoPlayer');
+    videoPlayer.registerSubscriptions();
+});
