@@ -1,32 +1,40 @@
-import './videoComponent.js'
-import './controlBarComponent.js'
+import './components/videoComponent.js'
+import './components/controlBarComponent.js'
+import Model from './model/index.js'
+import PlayerController from './controllers/playerController.js'
 
-const videoWidth = 640;
-const videoHeight = 365;
-const getStyle = () => {
-    return `
-      .container-video {
-        width: ${videoWidth};
-        height: ${videoHeight};
-        position: relative;
-    }
-  `
-};
+
 
 class PlayerComponent extends HTMLElement {
-    connectedCallback () {
+
+    videoWidth = 640;
+    videoHeight = 365;
+
+    getStyle = () => {
+        return `.container-video {
+                    width: ${this.videoWidth};
+                    height: ${this.videoHeight};
+                    position: relative;
+                }`
+    };
+
+
+    constructor(){
+        super();
+        console.log("constructor playerComponent");
+        this.model = new Model(this.getAttribute('urn'));
         this.shadow = this.attachShadow({mode: 'open'});
-        this.url = this.getAttribute('url');
-        this.render();
+    }
+
+    shadowDomReady () {
         this.videoElement = this.shadow.getElementById('videoElement');
         this.controlBar = this.shadow.getElementById('controlBar');
-
-
+        this.controller = new PlayerController(this.model, this.videoElement, this.controlBar);
     }
 
     addStyle () {
         const styleTag = document.createElement('style');
-        styleTag.textContent = getStyle();
+        styleTag.textContent = this.getStyle();
         this.shadow.appendChild(styleTag)
     }
 
@@ -34,24 +42,25 @@ class PlayerComponent extends HTMLElement {
     //     console.log("videoElementSubscription this", this)
     // };
 
-    createPlayerContainer () {
+    createTemplate () {
         const container = document.createElement('div');
         container.classList.add('container-video');
         this.addStyle();
-        container.innerHTML =   `<video-component src=${this.url} id="videoElement" width=${videoWidth} height=${videoHeight}></video-component>
+        container.innerHTML =   `<video-component src="" id="videoElement" width=${this.videoWidth} height=${this.videoHeight}></video-component>
                                 <control-bar-component id="controlBar"></control-bar-component>`;
         return container
     }
 
     render () {
-        this.shadow.appendChild(this.createPlayerContainer())
+        this.shadow.appendChild(this.createTemplate())
     }
 
-    registerSubscriptions () {
-        // this.videoElement.subscribe(this.videoElementSubscription);
-        this.videoElement.subscribe(this.controlBar.videoElementSubscription);
-        this.controlBar.subscribe(this.videoElement.controlBarSubscription);
+    connectedCallback () {
+        console.log("connectedCallback");
+        this.render();
+        this.shadowDomReady();
     }
+
 }
 
 customElements.define('player-component', PlayerComponent);

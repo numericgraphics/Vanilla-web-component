@@ -6,7 +6,7 @@ class VideoComponent extends mixinObservable(HTMLElement)  {
         this.shadow = this.attachShadow({mode: 'open'});
         this.src = this.getAttribute('src');
         this.width = this.getAttribute('width');
-        this.heigth = this.getAttribute('heigth');
+        this.height = this.getAttribute('height');
         this.video;
         this.render();
         this.controlBarSubscription = this.controlBarSubscription.bind(this);
@@ -24,15 +24,15 @@ class VideoComponent extends mixinObservable(HTMLElement)  {
         this.video.id = 'myVideo';
         this.video.src = this.src;
         this.video.width = this.width;
-        this.video.heigth = this.heigth;
-        this.video.controls = true;
+        this.video.height = this.height;
+        this.video.controls = false;
         this.video.autoplay = false;
         this.video.muted = true;
         this.addVideoListeners();
         this.shadow.appendChild(this.video)
     }
 
-    getvideoElement () {
+    getVideoElement () {
         return this.video;
     }
 
