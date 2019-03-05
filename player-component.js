@@ -2,6 +2,7 @@ import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
 import './components/videoJSComponent.js'
 import './components/controlBarComponent.js'
 import PlayerController from './controllers/playerController.js'
+import Model from './model/model.js'
 
 /**
  * `player-component`
@@ -28,11 +29,21 @@ class PlayerComponent extends PolymerElement {
     `;
   }
 
+  static get properties() {
+    return {
+      urn: {
+        type: String,
+        value: '',
+      }
+    };
+  }
+
   ready() {
     super.ready();
     this.videoElement = this.shadowRoot.getElementById('videoElement');
     this.controlBar = this.shadowRoot.getElementById('controlBar');
-    this.playerController = new PlayerController(this.videoElement, this.controlBar);
+    this.model = new Model(this.urn);
+    this.playerController = new PlayerController(this.model, this.videoElement, this.controlBar);
   }
 
   connectedCallback() {
