@@ -1,10 +1,9 @@
 import {mixinPubSub} from '../lib/mixinPubSub.js';
 
-class VideoComponent extends mixinPubSub(HTMLElement)  {
+class VideoJSComponent extends mixinPubSub(HTMLElement)  {
 
     constructor(){
         super();
-        console.log("VideoComponent constructor");
 
     }
 
@@ -17,22 +16,22 @@ class VideoComponent extends mixinPubSub(HTMLElement)  {
         this.controlBarSubscription = this.controlBarSubscription.bind(this);
     }
 
-    addVideoListeners () {
+    bindEvents (player) {
         let handler = (event) => {
             this.notify(event.type);
         };
-        ['play', 'pause', 'seeking', "ended"].forEach(event => this.video.addEventListener(event, handler));
+        ['play', 'pause'].forEach(event => player.on(event, handler));
 
-        this.video.addEventListener('timeupdate', (event) => {
+        player.on('timeupdate', () => {
             this.publishEvent('timeupdate', {  currentTime: this.video.currentTime,
                                                                     durration: this.video.duration,
                                                                     percent: (this.video.currentTime*100)/this.video.duration});
-        })
+        });
+        return player;
     }
 
     render () {
         this.video = document.createElement('video');
-        console.log("render videoComponent", this.width);
         this.video.id = 'myVideo';
         this.video.src = this.src;
         this.video.width = this.width;
@@ -40,12 +39,18 @@ class VideoComponent extends mixinPubSub(HTMLElement)  {
         this.video.controls = false;
         this.video.autoplay = false;
         this.video.muted = true;
-        this.addVideoListeners();
-        this.shadow.appendChild(this.video)
+
+        this.media = this.bindEvents(window.videojs(this.video));
+
+        this.shadow.appendChild(this.video);
     }
 
     getVideoElement () {
         return this.video;
+    }
+
+    getMediaElement () {
+        return this.media;
     }
 
     controlBarSubscription (event) {
@@ -61,4 +66,4 @@ class VideoComponent extends mixinPubSub(HTMLElement)  {
     }
 }
 
-customElements.define('video-component', VideoComponent);
+customElements.define('video-js-component', VideoJSComponent);

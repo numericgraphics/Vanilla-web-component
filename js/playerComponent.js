@@ -1,4 +1,5 @@
 import './components/videoComponent.js'
+import './components/videoJSComponent.js'
 import './components/controlBarComponent.js'
 import Model from './model/index.js'
 import PlayerController from './controllers/playerController.js'
@@ -18,7 +19,6 @@ class PlayerComponent extends HTMLElement {
 
     constructor(){
         super();
-
         this.model = new Model(this.getAttribute('urn'));
 
         this.videoWidth = 640;
@@ -27,8 +27,6 @@ class PlayerComponent extends HTMLElement {
     }
 
     shadowDomReady () {
-        this.videoElement = this.shadow.getElementById('videoElement');
-        this.controlBar = this.shadow.getElementById('controlBar');
         this.controller = new PlayerController(this.model, this.videoElement, this.controlBar);
     }
 
@@ -46,8 +44,18 @@ class PlayerComponent extends HTMLElement {
         const container = document.createElement('div');
         container.classList.add('container-video');
         this.addStyle();
-        container.innerHTML =   `<video-component src="" id="videoElement" events=${this.eventsManager} width=${this.videoWidth} height=${this.videoHeight}></video-component>
-                                <control-bar-component events=${this.eventsManager}  id="controlBar"></control-bar-component>`;
+        this.videoElement = this.getAttribute('player')     ? document.createElement('video-js-component')
+                                                                        : document.createElement('video-component');
+
+        this.videoElement.setAttribute('id', 'videoElement');
+        this.videoElement.setAttribute('width', this.videoWidth);
+        this.videoElement.setAttribute('height', this.videoHeight);
+        container.appendChild(this.videoElement);
+
+        this.controlBar = document.createElement('control-bar-component');
+        this.controlBar.setAttribute('id', 'controlBar');
+        container.appendChild(this.controlBar);
+
         return container
     }
 

@@ -90,14 +90,12 @@ class ControlBarComponent extends mixinObservable(HTMLElement) {
         super();
     }
 
-
     connectedCallback () {
         this.shadow = this.attachShadow({mode: 'open'});
         this.currentTime = 145;
         this.render();
         this.videoElementSubscription = this.videoElementSubscription.bind(this);
-        this.timeupdateSubscription = this.timeupdateSubscription.bind(this);
-
+        this.update = this.update.bind(this);
     }
 
     addStyle () {
@@ -148,9 +146,8 @@ class ControlBarComponent extends mixinObservable(HTMLElement) {
     // };
 
     update (event){
-        console.log("videElementTimeupdateSubscription", event);
+        console.log("update", event);
         this.currentTime = event.currentTime;
-        updatetemplate();
     }
 
     videoElementSubscription (event){

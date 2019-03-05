@@ -1,9 +1,8 @@
-import PubSub from "../lib/pubsub.js";
 
 export default class PlayerController {
 
     constructor(model, videoElement, controlBar){
-        console.log("constructor playerController");
+        console.log("constructor playerController videoElement", videoElement);
         this.model = model;
         this.videoElement = videoElement;
         this.controlBar = controlBar;
@@ -23,7 +22,9 @@ export default class PlayerController {
     }
 
     setVideoElementSource (url){
-        console.log("playerController setVideoElementSource", url);
+        console.log("playerController setVideoElementSource", this.videoElement.getVideoElement());
         this.videoElement.getVideoElement().src = url;
+        this.videoElement.getVideoElement().width = 640;
+        this.videoElement.getVideoElement().height = 365;
     }
 }

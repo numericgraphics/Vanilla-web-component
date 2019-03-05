@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@webcomponents/webcomponentsjs": "^2.2.7",
-    "srgletterbox-web": "github:SRGSSR/srgletterbox-web#feature/core-app"
+    "srgletterbox-web": "github:SRGSSR/srgletterbox-web#feature/core-app",
+    "video.js": "^7.4.1"
   }
 }
