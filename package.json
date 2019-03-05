@@ -1,10 +1,17 @@
 {
-  "name": "js-gwyvaq",
-  "version": "0.0.0",
-  "private": true,
+  "name": "player-component",
+  "description": "srg player",
+  "main": "player-component.js",
   "dependencies": {
-    "@webcomponents/webcomponentsjs": "^2.2.7",
-    "srgletterbox-web": "github:SRGSSR/srgletterbox-web#feature/core-app",
+    "@polymer/polymer": "^3.0.0",
     "video.js": "^7.4.1"
+  },
+  "devDependencies": {
+    "@polymer/iron-demo-helpers": "^3.0.0-pre.19",
+    "@polymer/test-fixture": "^4.0.2",
+    "@webcomponents/webcomponentsjs": "^2.0.0",
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "wct-mocha": "^1.0.0"
   }
 }
