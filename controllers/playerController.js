@@ -1,4 +1,4 @@
-import '../components/videoJSComponent.js'
+import '../view/components/videoJSComponent.js'
 
 export default class PlayerController {
 

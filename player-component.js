@@ -1,6 +1,6 @@
 import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
-import './components/videoJSComponent.js'
-import './components/controlBarComponent.js'
+import './view/components/videoJSComponent.js'
+import './view/components/controlBarComponent.js'
 import PlayerController from './controllers/playerController.js'
 import Model from './model/model.js'
 
