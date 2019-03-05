@@ -16,4 +16,9 @@ export const mixinObservable = Base => class extends Base {
     notify(data) {
         this.observers.forEach(observer => observer(data));
     }
+
+    setEventsManager(eventManager) {
+        console.log("setEventsManager", eventManager);
+        this.eventManager = eventManager;
+    }
 };

@@ -2,15 +2,13 @@ import './components/videoComponent.js'
 import './components/controlBarComponent.js'
 import Model from './model/index.js'
 import PlayerController from './controllers/playerController.js'
+import PubSub from "./lib/pubsub.js";
 
 
 
 class PlayerComponent extends HTMLElement {
 
-    videoWidth = 640;
-    videoHeight = 365;
-
-    getStyle = () => {
+    getStyle () {
         return `.container-video {
                     width: ${this.videoWidth};
                     height: ${this.videoHeight};
@@ -18,11 +16,13 @@ class PlayerComponent extends HTMLElement {
                 }`
     };
 
-
     constructor(){
         super();
-        console.log("constructor playerComponent");
+
         this.model = new Model(this.getAttribute('urn'));
+
+        this.videoWidth = 640;
+        this.videoHeight = 365;
         this.shadow = this.attachShadow({mode: 'open'});
     }
 
@@ -46,8 +46,8 @@ class PlayerComponent extends HTMLElement {
         const container = document.createElement('div');
         container.classList.add('container-video');
         this.addStyle();
-        container.innerHTML =   `<video-component src="" id="videoElement" width=${this.videoWidth} height=${this.videoHeight}></video-component>
-                                <control-bar-component id="controlBar"></control-bar-component>`;
+        container.innerHTML =   `<video-component src="" id="videoElement" events=${this.eventsManager} width=${this.videoWidth} height=${this.videoHeight}></video-component>
+                                <control-bar-component events=${this.eventsManager}  id="controlBar"></control-bar-component>`;
         return container
     }
 
@@ -56,7 +56,6 @@ class PlayerComponent extends HTMLElement {
     }
 
     connectedCallback () {
-        console.log("connectedCallback");
         this.render();
         this.shadowDomReady();
     }

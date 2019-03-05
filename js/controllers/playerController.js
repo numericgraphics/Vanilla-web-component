@@ -1,4 +1,4 @@
-import PubSub from '../lib/pubsub.js';
+import PubSub from "../lib/pubsub.js";
 
 export default class PlayerController {
 
@@ -7,7 +7,6 @@ export default class PlayerController {
         this.model = model;
         this.videoElement = videoElement;
         this.controlBar = controlBar;
-        this.events = new PubSub();
 
         this.registerSubscriptions();
         this.setVideoElementSource(this.model.getUrn());
@@ -16,9 +15,11 @@ export default class PlayerController {
 
     registerSubscriptions () {
         // this.videoElement.subscribe(this.videoElementSubscription);
-        this.events.subscribe('timeUpdate', this.controlBar.videElementTimeupdateSubscription);
+        // this.events.subscribe('timeUpdate', this.controlBar.videElementTimeupdateSubscription);
         this.videoElement.subscribe(this.controlBar.videoElementSubscription);
         this.controlBar.subscribe(this.videoElement.controlBarSubscription);
+        this.videoElement.subscribeEvent('timeupdate', this.controlBar.update);
+        // this.videoElement.timeUpdateSubscribe(this.controlBar.videElementTimeupdateSubscription);
     }
 
     setVideoElementSource (url){

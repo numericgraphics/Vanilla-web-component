@@ -1,7 +1,9 @@
 export default class Model {
-    constructor(urn){
-        console.log("constructor model", urn);
+    constructor(urn, eventsManager){
         this.urn = urn;
+        console.log("constructor model urn", this.urn);
+        this.eventsManager = eventsManager;
+        console.log("constructor model eventsManager", this.eventsManager);
         window.letterBoxWeb.getMediaCompositionByUrn('urn:rts:video:10255533').then((result) => {
             console.log("getMediaCompositionByUrn result", result);
         });

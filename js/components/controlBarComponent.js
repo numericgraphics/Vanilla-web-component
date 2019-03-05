@@ -1,4 +1,5 @@
-import {mixinObservable} from './mixinObservable.js';
+import {mixinObservable} from '../lib/mixinObservable.js';
+import Pubsub from "../lib/pubsub.js";
 
 const getStyle = () => {
     return `
@@ -85,11 +86,17 @@ const getStyle = () => {
 
 class ControlBarComponent extends mixinObservable(HTMLElement) {
 
+    constructor(){
+        super();
+    }
+
+
     connectedCallback () {
         this.shadow = this.attachShadow({mode: 'open'});
         this.currentTime = 145;
         this.render();
         this.videoElementSubscription = this.videoElementSubscription.bind(this);
+        this.timeupdateSubscription = this.timeupdateSubscription.bind(this);
 
     }
 
@@ -110,7 +117,7 @@ class ControlBarComponent extends mixinObservable(HTMLElement) {
         const template = document.createElement('template');
         template.innerHTML = `
             <button type="button" id="play-pause" class="btPlay">Play</button>
-            <input type="range" class="progressBar" value="0">
+            <input type="range" class="progressBar" value=${this.currentTime}>
             <input type="range" class="volumeBar" value="0">
             <p class="timing">${this.currentTime}</p>
             <button type="button" id="play-pause" class="btSetting">Setting</button>`;
@@ -140,8 +147,10 @@ class ControlBarComponent extends mixinObservable(HTMLElement) {
     //     }
     // };
 
-    videElementTimeupdateSubscription (event){
-
+    update (event){
+        console.log("videElementTimeupdateSubscription", event);
+        this.currentTime = event.currentTime;
+        updatetemplate();
     }
 
     videoElementSubscription (event){

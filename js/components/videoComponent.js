@@ -1,15 +1,19 @@
-import {mixinObservable} from './mixinObservable.js';
+import {mixinPubSub} from '../lib/mixinPubSub.js';
 
-class VideoComponent extends mixinObservable(HTMLElement)  {
+class VideoComponent extends mixinPubSub(HTMLElement)  {
 
-    connectedCallback () {
-        this.shadow = this.attachShadow({mode: 'open'});
+    constructor(){
+        super();
         this.src = this.getAttribute('src');
         this.width = this.getAttribute('width');
         this.height = this.getAttribute('height');
-        this.video;
+    }
+
+    connectedCallback () {
+        this.shadow = this.attachShadow({mode: 'open'});
         this.render();
         this.controlBarSubscription = this.controlBarSubscription.bind(this);
+        console.log("VideoComponent connectedCallback eventsManager", this.eventsManager);
     }
 
     addVideoListeners () {
@@ -17,6 +21,12 @@ class VideoComponent extends mixinObservable(HTMLElement)  {
             this.notify(event.type);
         };
         ['play', 'pause', 'seeking', "ended"].forEach(event => this.video.addEventListener(event, handler));
+
+        this.video.addEventListener('timeupdate', (event) => {
+            this.publishEvent('timeupdate', {  currentTime: this.video.currentTime,
+                                                                    durration: this.video.duration,
+                                                                    percent: (this.video.currentTime*100)/this.video.duration});
+        })
     }
 
     render () {
