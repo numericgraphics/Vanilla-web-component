@@ -7,7 +7,7 @@ export default class IntegrationLayer {
 
     GetUrn(){
         window.letterBoxWeb.getMediaCompositionByUrn('urn:rts:video:10255533').then((result) => {
-            console.log("getMediaCompositionByUrn result", result);
+            Object.assign(this, result);
         });
     }
 
