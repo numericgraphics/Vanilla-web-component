@@ -1,14 +1,16 @@
-export default class IntegrationLayer {
+import {Observable} from "../libs/observable.js";
+
+export default class IntegrationLayer extends Observable {
 
     constructor(urn){
-        console.log("IntegrationLayer constructor", urn);
+        super();
         this.GetUrn(urn);
     }
 
     GetUrn(){
         window.letterBoxWeb.getMediaCompositionByUrn('urn:rts:video:10255533').then((result) => {
             Object.assign(this, result);
+            this.notify(this);
         });
     }
-
 }

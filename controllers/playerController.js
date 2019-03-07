@@ -1,4 +1,6 @@
 import '../view/components/videoJSComponent.js'
+import Model from "../model/model.js";
+
 
 export default class PlayerController {
 
@@ -7,20 +9,59 @@ export default class PlayerController {
         this.videoElement = videoElement;
         this.controlBar = controlBar;
 
-        this.initModel();
-        this.initView();
-    }
+        this.resourceListReady = this.resourceListReady.bind(this);
 
-     initModel(){
-         this.model.init();
+        this.initView();
+        this.model.subscribe(Model.RESOURCE_LIST_READY, this.resourceListReady);
+
     }
 
     addVideoJS(){
-        this.media = window.videojs(this.videoElement.video, {children:[]});
+
+        // this.media = window.videojs(this.videoElement.video);
+
+        this.media = window.videojs(this.videoElement.video, {children : { controlBar: {children : {
+                        PlayToggle: true,
+                        VolumePanel:true,
+                        CurrentTimeDisplay:false,
+                        TimeDivider:false,
+                        ProgressControl : {children :{  SeekBar: true,
+                                                        // LoadProgressBar: true,
+                                                        // MouseTimeDisplay: true,
+                                                        // PlayProgressBar: true,
+                            }},
+                        DurationDisplay:true,
+
+                    }} }});
+
+        /*
+        this.media = window.videojs(this.videoElement.video, {children : { controlBar: {
+                    PlayToggle: true,
+                    VolumePanel:false,
+                    CurrentTimeDisplay:false,
+                    TimeDivider:false,
+                    DurationDisplay:false,
+                    ProgressControl:false,
+                    LiveDisplay:false,
+                    RemainingTimeDisplay:false,
+                    PlaybackRateMenuButton:false,
+                    ChaptersButton:false,
+                    DescriptionsButton:false,
+                    SubtitlesButton:false,
+                    CaptionsButton:false,
+                    AudioTrackButton:false,
+                    FullscreenToggle:false,
+            }}});*/
     }
+
+
 
     initView() {
         this.addVideoJS();
-        this.media.src('http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4');
+
+    }
+
+    resourceListReady(resourceList) {
+        this.media.src(resourceList);
     }
 }

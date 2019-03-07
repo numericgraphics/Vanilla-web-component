@@ -16,6 +16,7 @@ class PlayerComponent extends PolymerElement {
   static get template() {
     return html`
       <style>
+      
         .container-video {
                     width: 640px;
                     height: 365px;
