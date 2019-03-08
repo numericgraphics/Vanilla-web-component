@@ -1,16 +1,12 @@
-import PubSub from "../libs/pubsub.js";
-import IntegrationLayer from "./integrationLayer.js";
-import SourceAsset from './SourceAssets.js'
-import Parser from "./parser.js";
+import {PubSub} from "../libs/pubsub.js";
+import {IntegrationLayer} from "./integrationLayer.js";
+import {Parser} from "./parser.js";
+import {Events} from "./events";
 
-export default class Model extends PubSub {
-
-    static RESOURCE_LIST_READY  = 'ResourceList_Ready';
+export class Model extends PubSub {
 
     constructor(urn){
         super();
-        console.log("Model constructor", urn);
-        console.log("MIME_TYPES", SourceAsset.MIME_TYPES);
         this.subscribeToParser = this.subscribeToParser.bind(this);
 
         this.parser = new Parser();
@@ -20,15 +16,6 @@ export default class Model extends PubSub {
     }
 
     subscribeToParser(chapter){
-        this.publish(Model.RESOURCE_LIST_READY, chapter.resourceList.map(item => item.url));
-    }
-
-    init(){
-        console.log("Model init");
-        this.initListeners();
-    }
-
-    initListeners() {
-
+        this.publish(Events.RESOURCE_LIST_READY, chapter.resourceList.map(item => item.url));
     }
 }

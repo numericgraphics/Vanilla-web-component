@@ -1,4 +1,4 @@
-export default class SourceAsset {
+export  class SourceAsset {
     static  get  MIME_TYPES () {
         return {
             HDS: 'application/adobe-f4m',

@@ -1,6 +1,6 @@
 import {Observable} from "../libs/observable.js";
 
-export default class IntegrationLayer extends Observable {
+export  class IntegrationLayer extends Observable {
 
     constructor(urn){
         super();

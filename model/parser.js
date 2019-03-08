@@ -1,6 +1,6 @@
 import {Observable} from "../libs/observable.js";
 
-export default class Parser extends Observable {
+export class Parser extends Observable {
 
     constructor(){
         super();

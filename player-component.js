@@ -1,8 +1,8 @@
 import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
+import {Model} from './model/model.js'
+import {PlayerController} from './controllers/playerController.js'
 import './view/components/videoJSComponent.js'
 import './view/components/controlBarComponent.js'
-import PlayerController from './controllers/playerController.js'
-import Model from './model/model.js'
 
 /**
  * `player-component`
@@ -25,7 +25,6 @@ class PlayerComponent extends PolymerElement {
       </style>
       <div class="container-video">
         <video-js-component id="videoElement" src="" width="640" height="365"></video-js-component>
-        <!--<control-bar-component id="controlBar"></control-bar-component>-->
       </div>
     `;
   }
