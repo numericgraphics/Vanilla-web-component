@@ -1,28 +1,37 @@
 import React, { Component } from 'react';
-import VideoComponent from './views/video-component.js'
-import './App.css';
+import AudioComponent from "./views/audio-component";
 import {PlayerController} from "./controllers/playerController";
 import {Model} from "./model/model";
+import './App.css';
+import VideoJSComponent from "./views/videojs-component";
+
 
 class PlayerComponent extends Component {
 
     constructor(props){
         super(props);
-        console.log("PlayerComponent constructor", props);
+        this.type = this.props.type;
         this.model = new Model(props.urn);
-        this.playerController = new PlayerController();
+        this.videoElement = React.createRef();
     }
 
     render() {
+        const isVideo = this.type === 'video';
+        let component;
+        if (isVideo) {
+            component =  <VideoJSComponent id="videoElement" ref={this.videoElement} src="" width="640" height="365"/>
+        } else {
+            component =  <AudioComponent />
+        }
         return (
             <div className="container-video">
-                <VideoComponent id="videoElement" src="" width="640" height="365"/>
+                {component}
             </div>
         );
     }
 
     componentDidMount() {
-        console.log("PlayerComponent - componentDidMount");
+        this.playerController = new PlayerController(this.model, this.videoElement);
     }
 
     componentWillUnmount() {

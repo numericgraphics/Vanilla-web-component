@@ -5,16 +5,15 @@ export  class IntegrationLayer extends Observable {
 
     constructor(urn){
         super();
-        this.GetUrn(urn);
         this.dataproviderService = new DataproviderService();
+        this.GetUrn(urn);
     }
 
     GetUrn(urn){
-        console.log("Intergration layer", DataproviderService());
-        // TODO --> fix default import in the dataProviderService
-        // this.dataproviderService.getMediaCompositionByUrn(urn).then((result) => {
-        //     Object.assign(this, result);
-        //     this.notify(this);
-        // });
+        // TODO --> No support default class in DataProviderService
+        this.dataproviderService.getMediaCompositionByUrn(urn).then((result) => {
+            Object.assign(this, result);
+            this.notify(this);
+        });
     }
 }
