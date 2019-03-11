@@ -8,9 +8,11 @@ export class PlayerController {
         this.resourceListReady = this.resourceListReady.bind(this);
 
         this.model.subscribe(Events.RESOURCE_LIST_READY, this.resourceListReady);
+
+        setInterval(() => {console.log("timeout",this.videoElement.currentTime  )}, 1000);
     }
 
     resourceListReady(resourceList) {
-        this.videoElement.player.src(resourceList);
+        this.videoElement.source = resourceList;
     }
 }

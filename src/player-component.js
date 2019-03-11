@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import AudioComponent from "./views/audio-component";
 import {PlayerController} from "./controllers/playerController";
 import {Model} from "./model/model";
-import './App.css';
 import VideoJSComponent from "./views/videojs-component";
 
 

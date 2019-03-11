@@ -1,8 +1,11 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import videojs from '../../node_modules/video.js/dist/video.js'
+import '../../node_modules/video.js/dist/video-js.css'
 import './css/style.css';
 
-class VideoJSComponent extends Component {
+import {PlayerBase} from "./libs/playerBase";
+
+class VideoJSComponent extends PlayerBase {
 
     constructor(props){
         super(props);
@@ -15,8 +18,7 @@ class VideoJSComponent extends Component {
                         VolumePanel:true,
                         CurrentTimeDisplay:false,
                         TimeDivider:false,
-                        ProgressControl : {children :{  SeekBar: true,
-                            }},
+                        ProgressControl : {children : {  SeekBar: true }},
                         DurationDisplay:true,
 
                     }
@@ -31,7 +33,7 @@ class VideoJSComponent extends Component {
     render() {
         return (
             <div data-vjs-player>
-                <video ref={ node => this.videoNode = node } width={this.props.width} height={this.props.height} className="video-js" controls autoPlay/>
+                <video ref={ node => this.videoNode = node } width={this.props.width} height={this.props.height} className="video-js vjs-srgssr-skin" controls autoPlay/>
             </div>
         )
     }
