@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
-import videojs from '../../node_modules/video.js/dist/video.js'
-import '../../node_modules/video.js/dist/video-js.css'
-import './css/style.css';
 
 import {PlayerBase} from "./libs/playerBase";
+// import {PlayProgressBarComponent} from "./playprogressbar-component";
+import videojs from '../../node_modules/video.js/dist/video.js'
+import SeekBarCustomComponent from './seekbar-custom-component.js'
+import '../../node_modules/video.js/dist/video-js.css'
+import './css/style.scss';
+ import './css/seekbar.scss';
+
+
+
 
 class VideoJSComponent extends PlayerBase {
 
@@ -13,12 +19,17 @@ class VideoJSComponent extends PlayerBase {
     }
 
     componentDidMount() {
+        // videojs.registerComponent('SeekBarCustomComponent', SeekBarCustomComponent);
+        // videojs.registerComponent('SeekBarComponent', SeekbarComponent);
+        // videojs.registerComponent('PlayProgressBarComponent', PlayProgressBarComponent);
         let props = {children : { controlBar: {children : {
                         PlayToggle: true,
                         VolumePanel:true,
                         CurrentTimeDisplay:false,
                         TimeDivider:false,
-                        ProgressControl : {children : {  SeekBar: true }},
+                        ProgressControl : {children : {  SeekBarCustomComponent: {LoadProgressBar:true,  MouseTimeDisplay:true,  PlayProgressBar:true} }},
+                        // ProgressControl : {children : {  SeekBarCustomComponent: true }},
+                        // ProgressControl : true,
                         DurationDisplay:true,
 
                     }
@@ -33,7 +44,7 @@ class VideoJSComponent extends PlayerBase {
     render() {
         return (
             <div data-vjs-player>
-                <video ref={ node => this.videoNode = node } width={this.props.width} height={this.props.height} className="video-js vjs-srgssr-skin" controls autoPlay/>
+                <video ref={ node => this.videoNode = node } width={this.props.width} height={this.props.height} className="video-js vjs-srgssr-skin" controls />
             </div>
         )
     }
