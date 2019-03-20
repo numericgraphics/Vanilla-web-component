@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import {PlayerBase} from "./libs/playerBase";
-// import {PlayProgressBarComponent} from "./playprogressbar-component";
+import {PlayProgressBarComponent} from "./playprogressbar-component";
 import videojs from '../../node_modules/video.js/dist/video.js'
 import SeekBarCustomComponent from './seekbar-custom-component.js'
 import '../../node_modules/video.js/dist/video-js.css'
@@ -27,7 +27,7 @@ class VideoJSComponent extends PlayerBase {
                         VolumePanel:true,
                         CurrentTimeDisplay:false,
                         TimeDivider:false,
-                        ProgressControl : {children : {  SeekBarCustomComponent: {LoadProgressBar:true,  MouseTimeDisplay:true,  PlayProgressBar:true} }},
+                        ProgressControl : {children : {  SeekBarCustomComponent: {LoadProgressBar:true,  MouseTimeDisplay:true,  PlayProgressBarComponent:true} }},
                         // ProgressControl : {children : {  SeekBarCustomComponent: true }},
                         // ProgressControl : true,
                         DurationDisplay:true,

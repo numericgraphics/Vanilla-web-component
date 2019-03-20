@@ -17,7 +17,7 @@ export class PlayProgressBarComponent extends Component {
     }
 
     update(seekBarRect, seekBarPoint) {
-        console.log("PlayProgressBarComponent", seekBarPoint);
+        // console.log("PlayProgressBarComponent", this.el_.style.width);
         const timeTooltip = this.getChild('timeTooltip');
 
         if (!timeTooltip) {
@@ -31,4 +31,4 @@ export class PlayProgressBarComponent extends Component {
         timeTooltip.updateTime(seekBarRect, seekBarPoint, time);
     }
 }
-Component.registerComponent('PlayProgressBarComponent', PlayProgressBarComponent);
+videojs.registerComponent('PlayProgressBarComponent', PlayProgressBarComponent);
