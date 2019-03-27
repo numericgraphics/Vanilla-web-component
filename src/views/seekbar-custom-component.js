@@ -1,11 +1,12 @@
 import videojs from '../../node_modules/video.js/dist/video.js'
 import {detectmob} from '../utils/userAgentDetection.js'
+
 const SeekBar = videojs.getComponent('SeekBar');
 
 export class SeekBarCustomComponent extends SeekBar {
 
-    constructor(player, options, ready) {
-        super(player, options, ready);
+    constructor(player, options) {
+        super(player, options);
 
         let parent = Object.getPrototypeOf(SeekBar);
         console.log("constructor", parent.prototype);
@@ -17,17 +18,12 @@ export class SeekBarCustomComponent extends SeekBar {
         this.newTime = undefined;
         this.position = undefined;
 
-    }
-
-    _percentage(time, duration) {
-        return (time / duration) * 100;
+        player.on('seeked', (evt) => {
+            this.bar.timeTooltip.show();
+        });
     }
 
     handleMouseDown(event) {
-        console.log("width", this);
-
-
-
         if (event) {
             event.stopPropagation();
         }
@@ -38,7 +34,7 @@ export class SeekBarCustomComponent extends SeekBar {
             event.preventDefault();
         }
 
-         videojs.dom.blockTextSelection();
+        videojs.dom.blockTextSelection();
         this.addClass('vjs-sliding');
         this.trigger('slideractive');
         this.player_.scrubbing(true);
@@ -46,14 +42,13 @@ export class SeekBarCustomComponent extends SeekBar {
         const doc = this.bar.el_.ownerDocument;
         this.on(doc, 'mousemove', this.handleMouseMove);
         this.on(doc, 'mouseup', this.handleMouseUp);
-        if (detectmob()){
-            console.log("is mobile");
+        if (detectmob()) {
             this.on(doc, 'touchmove', this.handleMouseMove);
             this.on(doc, 'touchend', this.handleMouseUp);
         }
 
-         this.calculateNewTime(event);
-         this.player_.currentTime(this.newTime);
+        this._calculateNewTime(event);
+        this.player_.currentTime(this.newTime);
 
         this.videoWasPlaying = !this.player_.paused();
         if (this.videoWasPlaying) {
@@ -61,17 +56,16 @@ export class SeekBarCustomComponent extends SeekBar {
         }
     }
 
-    /**/
     handleMouseMove(event) {
-        this.calculateNewTime(event);
-        this.setPosition(event.clientX);
+        this.bar.timeTooltip.hide();
+        this._calculateNewTime(event);
+        this._setPosition();
     }
 
     handleMouseUp(event) {
         if (event) {
             event.stopPropagation();
         }
-        // super.handleMouseUp(event);
         const doc = this.bar.el_.ownerDocument;
 
         videojs.dom.unblockTextSelection();
@@ -82,34 +76,26 @@ export class SeekBarCustomComponent extends SeekBar {
         this.off(doc, 'mouseup', this.handleMouseUp);
         this.off(doc, 'touchmove', this.handleMouseMove);
         this.off(doc, 'touchend', this.handleMouseUp);
-         this.player_.currentTime(this.newTime);
-        this.setPosition(event.clientX);
-        this.seekBarRect = undefined;  /**/
+        this.player_.currentTime(this.newTime);
+        this._setPosition();
+
         if (this.videoWasPlaying) {
-            SeekBarCustomComponent.silencePromise(this.player_.play());
+            this._silencePromise(this.player_.play());
         }
 
     }
 
-    static silencePromise(value) {
-        value.then(null, (e) => {});
+    _silencePromise(value) {
+        value.then(null, (e) => {
+        });
     }
 
-    setPosition(position) {
-        console.log("setPosition", this.newTime);
-        console.log("getCurrentTime_", this.getCurrentTime_());
-        console.log("_________________");
-        // if (this.seekBarRect === undefined) {
-        //     this.seekBarRect = videojs.dom.getBoundingClientRect(this.bar.el_);
-        // }
+    _setPosition() {
         this.bar.update(this.newTime, super.update());
-        this.bar.el_.style.width =  Math.ceil(this._percentage(this.newTime, this.player_.duration())) + '%';
-
-         // this.bar.el_.style.width = (position > videojs.dom.getBoundingClientRect(this.el()).width ? videojs.dom.getBoundingClientRect(this.el()).width : position - this.seekBarRect.left)+ 'px';
-
+        this.bar.el_.style.width = Math.ceil(this._percentage(this.newTime, this.player_.duration())) + '%';
     }
 
-    calculateNewTime(event) {
+    _calculateNewTime(event) {
         const distance = this.calculateDistance(event);
         const liveTracker = this.player_.liveTracker;
 
@@ -139,15 +125,11 @@ export class SeekBarCustomComponent extends SeekBar {
         }
     }
 
+    _percentage(time, duration) {
+        return (time / duration) * 100;
+    }
+
 
 }
-
 SeekBarCustomComponent.prototype.playerEvent = 'timeupdate';
-SeekBarCustomComponent.prototype.options_ = {
-    children: [
-        'loadProgressBar',
-        'PlayProgressBarComponent'
-    ],
-    barName: 'PlayProgressBarComponent'
-};
 videojs.registerComponent('SeekBarCustomComponent', SeekBarCustomComponent);
