@@ -6,7 +6,6 @@ class VideoComponent extends Component {
     constructor(props){
         super(props);
         this.video = React.createRef();
-        console.log("VideoComponent constructor", this);
     }
 
     render() {

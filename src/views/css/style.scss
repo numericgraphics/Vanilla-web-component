@@ -1,33 +1,43 @@
+@font-face {
+  font-family: 'srgssr-type-md';
+  src: url(../../fonts/srgssr-type-md.ttf);
+}
+
+$progressHeight: 3px;
+$progressFontSize: 1.4em;
+$progressBorderRadius: 2px;
+$controlBarHeight: 62px;
+
+
 .vjs-srgssr-skin {
-//
-//  video {
-//    width: 100%;
-//    height: auto;
-//  }
-//
-//  video, .container-video {
-//    width: 640px;
-//    height: 365px;
-//  }
-//
-//  .container-video {
-//    position: relative;
-//  }
-//
+  font-family: srgssr-type-md;
+
+  .vjs-time-control {
+    font-size: $progressFontSize;
+    line-height: inherit;
+  }
+
+  .vjs-control {
+    height: auto;
+  }
+
+  .video-js .vjs-big-play-button .vjs-icon-placeholder:before,
+  .vjs-button > .vjs-icon-placeholder:before {
+    position: relative;
+  }
+
   .vjs-control-bar {
     position: absolute;
     bottom: 0px;
     opacity: 1;
     width: 100%;
-    height: 62px;
+    height: $controlBarHeight;
     color: #fff;
     display: grid;
     grid-template-columns: 20px 40px 100px auto 0fr 20px;
     grid-template-rows: 2px 0fr 1fr 2px;
     justify-items: center;
     align-items: center;
-    grid-row-gap: 5px;
-    grid-column-gap: 5px;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
   }
 
@@ -52,95 +62,36 @@
     grid-row-start: 2;
     grid-row-end: 3;
     width: 100% !important;
-    //padding: 5px 0;
     height: 7px;
   }
-///**/
-//  //.vjs-load-progress,
-//  //.vjs-play-progress{
-//  //  display: none;
-//  //}
-//
-//  .vjs-progress-holder {
-//    //position: relative;
-//    //background-color: rgba(255, 255, 255, 0.3);
-//    //height: 5px;
-//    //border-radius: 3px;
-//  }
-//
-//  //.vjs-load-progress {
-//  //  position: absolute;
-//  //  background-color: rgba(255, 255, 255, 0.3);
-//  //  height: 5px;
-//  //  border-radius: 3px;
-//  //}
-//
-//  .vjs-load-progress .vjs-control-text {
-//    //display: none;
-//  }
-//
-//  .vjs-play-progress {
-//    //background-color: rgba(255, 255, 255, 1);
-//    //height: 5px;
-//    //border-radius: 3px;
-//    //position: relative;
-//    //z-index: 1;
-//  }
-//
-//  //video-js .vjs-play-progress::before,
-//  //.vjs-play-progress::before {
-//  //  content: " ";
-//  //  position: absolute;
-//  //  height: 15px;
-//  //  width: 15px;
-//  //  background-color: white;
-//  //  border-radius: 50%;
-//  //  display: inline-block;
-//  //  top: -5px;
-//  //}
-//
-//  .vjs-progress-holder, .vjs-load-progress, .vjs-play-progress {
-//    //transition: height 0.15s ease-out;
-//    //height: 5px;
-//  }
-//
-//  /* .vjs-control:hover .vjs-progress-holder, .vjs-control:hover .vjs-load-progress, .vjs-control:hover .vjs-play-progress{
-//  transition: height 0.15s ease-in;
-//  height: 7px;
-//  } */
-///**/
-//
-//  .vjs-mouse-display {
-//    background:transparent!important;
-//    top: 0 !important;
-//  }
-//
-//  .vjs-progress-holder:hover .vjs-mouse-display {
-//    position: absolute;
-//    top: -25px;
-//    //margin-left: -13px;
-//    visibility: visible;
-//    opacity: 1;
-//  }
-//
-//  //.vjs-play-progress .vjs-time-tooltip {
-//  //  display: none!important;
-//  //}
-//
+
+  .vjs-progress-holder {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.3);
+    height: $progressHeight;
+    border-radius: $progressBorderRadius;
+  }
+
+  .vjs-load-progress {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.3);
+    height: $progressHeight;
+    border-radius: $progressBorderRadius;
+  }
+
+  .vjs-play-progress {
+    background-color: rgba(255, 255, 255, 1);
+    height: $progressHeight;
+    border-radius: $progressBorderRadius;
+    position: relative;
+    z-index: 1;
+  }
+
   .vjs-mouse-display .vjs-time-tooltip {
     background-color: rgba(255, 255, 255, 0.8);
     color: #000;
-//     //right: -30px !important;
-//     //float: right;
-//     font-family: Arial, Helvetica, sans-serif;
-//     font-size: 1em;
-//     padding: 6px 8px 8px 8px;
-//     background-color: #fff;
-//     border-radius: 0.3em;
-//     color: #000;
-//     //display: none!important;
-   }
-//
+  }
+
   .vjs-fullscreen-control,
   .vjs-current-time,
   .vjs-time-divider,
@@ -149,18 +100,13 @@
     grid-column-end: 5;
     grid-row-start: 3;
     grid-row-end: 4;
-    display: block!important;
+    display: block !important;
   }
-///**/
-//  .vjs-fullscreen-control{
-//    justify-self: end;
-//  }
-//
-//  .vjs-current-time .vjs-control-text,
-//  .vjs-duration .vjs-control-text {
-//    display: block!important;
-//  }
-//
+
+  .vjs-fullscreen-control {
+    justify-self: end;
+  }
+
   .vjs-current-time {
     margin-right: 40px;
   }
@@ -168,52 +114,41 @@
   .vjs-duration {
     margin-left: 50px;
   }
-//
-//  .vjs-poster {
-//    display: inline-block;
-//    vertical-align: middle;
-//    background-repeat: no-repeat;
-//    background-position: 50% 50%;
-//    background-size: cover;
-//    background-color: #000000;
-//    cursor: pointer;
-//    margin: 0;
-//    padding: 0;
-//    position: absolute;
-//    top: 0;
-//    right: 0;
-//    bottom: 0;
-//    left: 0;
-//    height: 100%;
-//  }
-//
-//  .vjs-has-started .vjs-poster {
-//    display: none;
-//  }
-//
-//  .vjs-audio.vjs-has-started .vjs-poster {
-//    display: block;
-//  }
-//
-//  .vjs-using-native-controls .vjs-poster {
-//    display: none;
-//  }
-//
+
   .vjs-slider-horizontal .vjs-volume-level:before {
     top: -0.35em;
     right: -0.5em;
-    font-size: 1.3em!important;
+    font-size: 1.3em !important;
+  }
+
+  .vjs-play-progress::before {
+    font-size: 1.6em;
+    top: -0.41em;
+  }
+
+  .vjs-progress-control:hover .vjs-progress-holder {
+    .vjs-time-tooltip {
+      font-size: 1em;
+    }
+  }
+
+  .vjs-progress-control:hover .vjs-progress-holder.disabled {
+    .vjs-time-tooltip {
+      font-size: 1em;
+    }
+  }
+
+  .vjs-progress-holder {
+    transition: none;
+  }
+
+  .vjs-progress-control:hover .vjs-progress-holder {
+    font-size: inherit;
   }
 
 }
-//
-//.video-js .vjs-play-progress::before {
-//  //content: " ";
-//  //position: absolute;
-//  //height: 15px;
-//  //width: 15px;
-//  //background-color: white;
-//  //border-radius: 50%;
-//  //display: inline-block;
-//  //top: -5px;
-//}
+
+
+
+
+

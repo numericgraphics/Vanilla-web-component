@@ -8,8 +8,7 @@ export class SeekBarCustomComponent extends SeekBar {
     constructor(player, options) {
         super(player, options);
 
-        let parent = Object.getPrototypeOf(SeekBar);
-        console.log("constructor", parent.prototype);
+        this.parent = Object.getPrototypeOf(SeekBar);
 
         this.handleMouseMove = this.handleMouseMove.bind(this);
         this.handleMouseUp = this.handleMouseUp.bind(this);
@@ -21,6 +20,16 @@ export class SeekBarCustomComponent extends SeekBar {
         player.on('seeked', (evt) => {
             this.bar.timeTooltip.show();
         });
+    }
+
+    update(event) {
+        super.update();
+    }
+
+    getCurrentTime_() {
+        return (this.player_.scrubbing()) ?
+            this.player_.getCache().currentTime :
+            this.player_.currentTime();
     }
 
     handleMouseDown(event) {
@@ -82,7 +91,7 @@ export class SeekBarCustomComponent extends SeekBar {
         if (this.videoWasPlaying) {
             this._silencePromise(this.player_.play());
         }
-
+        this.player_.scrubbing(false);
     }
 
     _silencePromise(value) {

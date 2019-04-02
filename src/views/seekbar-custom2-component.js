@@ -194,6 +194,7 @@ class SeekBarCustom2Component extends Slider {
      * @private
      */
     getCurrentTime_() {
+
         return (this.player_.scrubbing()) ?
             this.player_.getCache().currentTime :
             this.player_.currentTime();
