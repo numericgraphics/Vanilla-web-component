@@ -10,15 +10,15 @@ class PlayerComponent extends Component {
     constructor(props){
         super(props);
         this.type = this.props.type;
-        this.model = new Model(props.urn);
-        this.videoElement = React.createRef();
+        // this.model = new Model(props.urn);
+        // this.videoElement = React.createRef();
     }
 
     render() {
         const isVideo = this.type === 'video';
         let component;
         if (isVideo) {
-            component =  <VideoJSComponent id="videoElement" ref={this.videoElement} src="" width="400px" height="400px"/>
+            component =  <VideoJSComponent id="videoElement" ref={this.videoElement} urn={this.props.urn} width="400px" height="400px"/>
         } else {
             component =  <AudioComponent />
         }
@@ -30,7 +30,7 @@ class PlayerComponent extends Component {
     }
 
     componentDidMount() {
-        this.playerController = new PlayerController(this.model, this.videoElement);
+        // this.playerController = new PlayerController(this.model, this.videoElement);
     }
 
     componentWillUnmount() {
