@@ -34,7 +34,7 @@ $controlBarHeight: 62px;
     height: $controlBarHeight;
     color: #fff;
     display: grid;
-    grid-template-columns: 20px 40px 100px auto 0fr 20px;
+    grid-template-columns: 20px 40px 40px auto 0fr 0fr 20px;
     grid-template-rows: 2px 0fr 1fr 2px;
     justify-items: center;
     align-items: center;
@@ -85,19 +85,31 @@ $controlBarHeight: 62px;
     border-radius: $progressBorderRadius;
     position: relative;
     z-index: 1;
+
+    .vjs-time-tooltip{
+      display: none;
+    }
+
   }
 
   .vjs-mouse-display .vjs-time-tooltip {
-    background-color: rgba(255, 255, 255, 0.8);
-    color: #000;
-  }
+     background-color: rgba(255, 255, 255, 0.8);
+     color: #000;
+   }
 
-  .vjs-fullscreen-control,
   .vjs-current-time,
   .vjs-time-divider,
   .vjs-duration {
     grid-column-start: 4;
     grid-column-end: 5;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    display: block !important;
+  }
+
+  .vjs-fullscreen-control {
+    grid-column-start: 5;
+    grid-column-end: 6;
     grid-row-start: 3;
     grid-row-end: 4;
     display: block !important;
@@ -126,14 +138,18 @@ $controlBarHeight: 62px;
     top: -0.41em;
   }
 
+  .vjs-play-progress .vjs-time-tooltip {
+    display: none !important;
+  }
+
   .vjs-progress-control:hover .vjs-progress-holder {
-    .vjs-time-tooltip {
+    .vjs-mouse-display .vjs-time-tooltip {
       font-size: 1em;
     }
   }
 
   .vjs-progress-control:hover .vjs-progress-holder.disabled {
-    .vjs-time-tooltip {
+    .vjs-mouse-display .vjs-time-tooltip {
       font-size: 1em;
     }
   }
@@ -146,6 +162,29 @@ $controlBarHeight: 62px;
     font-size: inherit;
   }
 
+  .vjs-progress-control:hover .vjs-time-tooltip,
+  .vjs-progress-control:hover .vjs-progress-holder:focus {
+    .vjs-mouse-display .vjs-time-tooltip {
+      display: block;
+      visibility: visible;
+    }
+  }
+
+  .vjs-big-play-button {
+    font-size: 5em;
+    line-height: 1.5em;
+    height: 1.5em;
+    width: 1.5em;
+    padding: 0;
+    border-radius: 1em;
+    margin-left: -0.8em!important;
+
+    .vjs-icon-placeholder:before {
+      padding-left: 6px!important;
+      margin-top: -2px!important;
+    }
+
+  }
 }
 
 

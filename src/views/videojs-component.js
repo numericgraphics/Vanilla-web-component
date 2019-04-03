@@ -19,6 +19,8 @@ class VideoJSComponent extends PlayerBase {
     componentDidMount() {
         let props = {
             children: {
+                BigPlayButton: true,
+                LoadingSpinner:true,
                 controlBar: {
                     children: {
                         PlayToggle: true,
@@ -42,7 +44,7 @@ class VideoJSComponent extends PlayerBase {
         return (
             <div data-vjs-player>
                 <video ref={node => this.videoNode = node} width={this.props.width} height={this.props.height}
-                       className="video-js vjs-srgssr-skin" controls/>
+                       className="video-js vjs-big-play-centered vjs-srgssr-skin" controls/>
             </div>
         )
     }

@@ -18,7 +18,7 @@ class PlayerComponent extends Component {
         const isVideo = this.type === 'video';
         let component;
         if (isVideo) {
-            component =  <VideoJSComponent id="videoElement" ref={this.videoElement} src="" width="640" height="365"/>
+            component =  <VideoJSComponent id="videoElement" ref={this.videoElement} src="" width="400px" height="400px"/>
         } else {
             component =  <AudioComponent />
         }
