@@ -6,14 +6,28 @@ export  class IntegrationLayer extends Observable {
     constructor(urn){
         super();
         this.dataproviderService = new DataproviderService();
-        this.GetUrn(urn);
     }
 
-    GetUrn(urn){
-        // TODO --> No support default class in DataProviderService
-        this.dataproviderService.getMediaCompositionByUrn(urn).then((result) => {
-            Object.assign(this, result);
-            this.notify(this);
-        });
+    getMediaComposition(urn){
+       return this.dataproviderService.getMediaCompositionByUrn(urn).then(result => result);
     }
+
+    async getResourcesList(urn){
+        let mediaComposition = await this.getMediaComposition(urn);
+        let chapter = mediaComposition.chapterList.find( chapter => chapter.urn === mediaComposition.chapterUrn);
+        console.log("perf2");
+        let resourceList = chapter.resourceList.map(item => item.url);
+        let mimes = chapter.resourceList.map(item => item.mimeType);
+        let resources = [];
+        resourceList.forEach(element => {
+            resources.push({
+                src: element
+            });
+        });
+        mimes.forEach((element, i) => {
+            resources[i].type = element;
+        });
+        return resources;
+    }
+
 }

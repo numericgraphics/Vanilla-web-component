@@ -51,10 +51,6 @@ class VideoJSComponent extends PlayerBase {
             </div>
         )
     }
-
-    createVideojs() {
-
-    }
 }
 
 export default VideoJSComponent;
