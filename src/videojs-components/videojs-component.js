@@ -2,7 +2,9 @@ import React from 'react';
 import {PlayerBase} from "./libs/playerBase";
 import videojs from '../../node_modules/video.js/dist/video.js'
 import videojsUrnMiddleware from "../data/videojs-urn-middleware";
-import '../../node_modules/video.js/dist/video-js.css'
+import ProgressControlComponent from "./progress-control-component.js";
+import SeekBarCustomComponent from "./seekbar-custom-component.js";
+import '../../node_modules/video.js/dist/video-js.css';
 import './css/style.scss';
 
 

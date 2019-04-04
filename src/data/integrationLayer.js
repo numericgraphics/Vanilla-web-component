@@ -1,5 +1,5 @@
 import {Observable} from "../libs/observable.js";
-import DataproviderService from '../../node_modules/srgletterbox-web/app/dataProvider/services/DataProviderService.js';
+import {DataproviderService} from '../../node_modules/srgletterbox-web/app/dataProvider/services/DataProviderService.js';
 
 export  class IntegrationLayer extends Observable {
 
