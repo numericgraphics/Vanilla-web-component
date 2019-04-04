@@ -1,10 +1,7 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {PlayerBase} from "./libs/playerBase";
 import videojs from '../../node_modules/video.js/dist/video.js'
-import SeekBarCustomComponent from './seekbar-custom-component.js'
-import ProgressControlComponent from './progress-control-component.js'
-import videojsUrnMiddleware from "../model/videojs-urn-middleware";
-import {DataproviderService} from "srgletterbox-web/app/dataProvider/services/DataProviderService";
+import videojsUrnMiddleware from "../data/videojs-urn-middleware";
 import '../../node_modules/video.js/dist/video-js.css'
 import './css/style.scss';
 

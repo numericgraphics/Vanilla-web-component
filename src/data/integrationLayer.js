@@ -1,12 +1,20 @@
-import {DataproviderService} from "srgletterbox-web/app/dataProvider/services/DataProviderService";
+import {Observable} from "../libs/observable.js";
+import DataproviderService from '../../node_modules/srgletterbox-web/app/dataProvider/services/DataProviderService.js';
 
-const videojsUrnMiddleware = function (player) {
-    async function setSource(srcObj, next) {
+export  class IntegrationLayer extends Observable {
+
+    constructor(){
+        super();
         this.dataproviderService = new DataproviderService();
-        let mediaComposition = await this.dataproviderService.getMediaCompositionByUrn(srcObj.src).then(result => result);
-        console.log("perf1");
+    }
+
+    getMediaComposition(urn){
+       return this.dataproviderService.getMediaCompositionByUrn(urn).then(result => result);
+    }
+
+    async getResourcesList(urn){
+        let mediaComposition = await this.getMediaComposition(urn);
         let chapter = mediaComposition.chapterList.find( chapter => chapter.urn === mediaComposition.chapterUrn);
-        console.log("perf2");
         let resourceList = chapter.resourceList.map(item => item.url);
         let mimes = chapter.resourceList.map(item => item.mimeType);
         let resources = [];
@@ -18,18 +26,7 @@ const videojsUrnMiddleware = function (player) {
         mimes.forEach((element, i) => {
             resources[i].type = element;
         });
-
-        next(null, resources[0]);
+        return resources;
     }
 
-    return {
-        setSource,
-        currentTime(ct) {
-            return ct;
-        }
-    };
-};
-export default videojsUrnMiddleware;
-
-
-
+}
