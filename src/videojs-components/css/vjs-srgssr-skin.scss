@@ -21,11 +21,6 @@ $controlBarHeight: 62px;
     height: auto;
   }
 
-  .video-js .vjs-big-play-button .vjs-icon-placeholder:before,
-  .vjs-button > .vjs-icon-placeholder:before {
-    position: relative;
-  }
-
   .vjs-control-bar {
     position: absolute;
     bottom: 0px;
@@ -189,6 +184,12 @@ $controlBarHeight: 62px;
       height: auto;
     }
   }
+
+  .video-js .vjs-big-play-button .vjs-icon-placeholder:before,
+  .vjs-button > .vjs-icon-placeholder:before {
+    position: relative;
+  }
+
 }
 
 

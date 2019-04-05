@@ -47,7 +47,7 @@ class VideoJSComponent extends PlayerBase {
         return (
             <div data-vjs-player>
                 <video ref={node => this.videoNode = node} width={this.props.width} height={this.props.height}
-                       className="video-js vjs-srgssr-skin" controls>
+                       className="video-js vjs-srgssr-skin vjs-show-big-play-button-on-pause" controls>
                 </video>
             </div>
         )
