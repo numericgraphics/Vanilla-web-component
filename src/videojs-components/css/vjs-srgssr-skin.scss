@@ -173,17 +173,21 @@ $controlBarHeight: 62px;
   .vjs-big-play-button {
     font-size: 5em;
     line-height: 1.5em;
-    height: 1.5em;
-    width: 1.5em;
+    height: 100%;
+    width: 100%;
     padding: 0;
-    border-radius: 1em;
-    margin-left: -0.8em!important;
+    border-radius: 0!important;
+    border: none!important;
+    top: 0!important;
+    left: 0!important;
 
     .vjs-icon-placeholder:before {
-      padding-left: 6px!important;
-      margin-top: -2px!important;
+      top:50%;
+      left:50%;
+      transform: translate(-50%, -50%) !important;
+      width: auto;
+      height: auto;
     }
-
   }
 }
 

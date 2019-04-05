@@ -5,7 +5,8 @@ import videojsUrnMiddleware from "../data/videojs-urn-middleware";
 import ProgressControlComponent from "./progress-control-component.js";
 import SeekBarCustomComponent from "./seekbar-custom-component.js";
 import '../../node_modules/video.js/dist/video-js.css';
-import './css/style.scss';
+import './css/vjs-srgssr-skin.scss';
+import {DataproviderService} from "srgletterbox-web/app/dataProvider/services/DataProviderService";
 
 
 class VideoJSComponent extends PlayerBase {
@@ -33,7 +34,8 @@ class VideoJSComponent extends PlayerBase {
                         fullscreenToggle: true,
                     }
                 }
-            }
+            },
+            dataProvider: {service:new DataproviderService()}
         };
         this.player = videojs(this.videoNode, props, function onPlayerReady() {
             console.log('onPlayerReady', this);
@@ -45,7 +47,7 @@ class VideoJSComponent extends PlayerBase {
         return (
             <div data-vjs-player>
                 <video ref={node => this.videoNode = node} width={this.props.width} height={this.props.height}
-                       className="video-js vjs-big-play-centered vjs-srgssr-skin" controls>
+                       className="video-js vjs-srgssr-skin" controls>
                 </video>
             </div>
         )

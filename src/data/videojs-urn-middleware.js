@@ -1,9 +1,19 @@
-import {IntegrationLayer} from "./integrationLayer.js";
 
 const videojsUrnMiddleware = function (player) {
     async function setSource(srcObj, next) {
-        this.integrationLayer = new IntegrationLayer();
-        let resources = await this.integrationLayer.getResourcesList(srcObj.src);
+        let mediaComposition = await player.options_.dataProvider.service.getMediaCompositionByUrn(srcObj.src);
+        let chapter = mediaComposition.chapterList.find( chapter => chapter.urn === mediaComposition.chapterUrn);
+        let resourceList = chapter.resourceList.map(item => item.url);
+        let mimes = chapter.resourceList.map(item => item.mimeType);
+        let resources = [];
+        resourceList.forEach(element => {
+            resources.push({
+                src: element
+            });
+        });
+        mimes.forEach((element, i) => {
+            resources[i].type = element;
+        });
         next(null, resources[0]);
     }
 
