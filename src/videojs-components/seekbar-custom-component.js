@@ -101,7 +101,7 @@ export class SeekBarCustomComponent extends SeekBar {
 
     _setPosition() {
         this.bar.update(this.newTime, super.update());
-        this.bar.el_.style.width = Math.ceil(this._percentage(this.newTime, this.player_.duration())) + '%';
+        this.bar.el_.style.width = this._percentage(this.newTime, this.player_.duration()) + '%';
     }
 
     _calculateNewTime(event) {
