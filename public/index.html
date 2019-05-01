@@ -15,6 +15,9 @@
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
+    <script src="../node_modules/video.js/dist/video.js" ></script>
+    <script src="../node_modules/videojs-contrib-eme/dist/videojs-contrib-eme.js" ></script>
+
     <!--<script type="module" >-->
       <!--import DataProviderService from '../node_modules/srgletterbox-web/app/dataProvider/services/DataProviderService.js';-->
       <!--window.letterBoxWeb = new DataProviderService();-->
@@ -33,6 +36,10 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <video id="testVideo">
+      <sources type="S"></sources>
+
+    </video>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

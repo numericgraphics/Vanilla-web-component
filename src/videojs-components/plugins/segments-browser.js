@@ -8,46 +8,53 @@ export class SegmentsBrowserPlugin extends Plugin {
 
     constructor(player, options) {
         super(player, options);
-
+        this.createSegments = this.createSegments.bind(this);
         player.on('ready', () => {
-            console.log("SegmentsBrowserPlugin", player.options_.dataProvider.mediaCompoposition.chapterList);
-            this.chapterList = player.options_.dataProvider.mediaCompoposition.chapterList;
+            this.chapterList = player.options_.SRGProviders.mediaCompoposition.chapterList;
             this.chapters = [];
             this.createDomElement();
+
             this.createSegments();
         });
     }
 
-    clickChapter(){
-        console.log("clickChapter");
-    }
+    test = (data) => {
+        console.log(data);
+    };
 
     createSegments() {
+        window.clickChapter = (chapter) => {
+            console.log("clickChapter", chapter );
+        };
+
         this.chapterList.forEach(chapter => {
             this.chapters.push(new Chapter(chapter));
         });
 
         this.segmentsListContainer.innerHTML = ` ${this.chapters.map(chapter => `
-        <button onclick="this.clickChapter('${chapter}')">
+        <button onclick="clickChapter('${chapter.urn}')">
              ${chapter.render()}
         </button>
         `).join('')}`;
 
+        // this.segmentsListContainer.innerHTML = ` ${this.chapters.map(chapter => `
+        // <button onclick="this.test('${chapter.urn}')">
+        //      ${chapter.render()}
+        // </button>
+        // `).join('')}`;
     }
 
     createDomElement() {
-        this.videoContainer = document.querySelector("#vjs_video_3");
+        this.videoContainer = document.querySelector(".vjs-control-bar");
         this.segmentsContainer = document.createElement("div");
         this.segmentsContainer.classList.add('srg-segment-container');
         this.segmentsContainer.innerHTML = `<div class="srg-arrow srg-arrow-next"></div>
-            <div class="srg-arrow srg-arrow-prev"></div>`;
+                                            <div class="srg-arrow srg-arrow-prev"></div>`;
 
         this.segmentsListContainer = document.createElement("div");
         this.segmentsListContainer.classList.add('srg-segment-list');
 
         this.segmentsContainer.appendChild(this.segmentsListContainer);
-        console.log("createDomElement videoContainer", this.videoContainer);
-        console.log("createDomElement document", document);
         this.videoContainer.appendChild(this.segmentsContainer);
     }
 }

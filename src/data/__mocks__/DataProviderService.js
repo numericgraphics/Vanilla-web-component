@@ -1,4 +1,4 @@
-
+/*
 export class DataProviderService {
     constructor() {
         console.log("DataproviderService constructor");
@@ -16,3 +16,4 @@ export class DataProviderService {
         // });
     }
 }
+*/

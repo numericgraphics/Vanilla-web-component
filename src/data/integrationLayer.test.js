@@ -1,3 +1,5 @@
+/*
+
 // jest.mock('../../node_modules/srgletterbox-web/app/dataProvider/services/DataProviderService.js');
 // jest.mock('../../node_modules/srgletterbox-web/app/dataProvider/dataClass/MediaComposition.js');
 import DataproviderService from './__mocks__/DataProviderService.js'
@@ -20,3 +22,4 @@ describe('is IntegrationLayer service is available', () => {
         expect(this.integrationLayer).not.toBeUndefined();
     });
 });
+*/

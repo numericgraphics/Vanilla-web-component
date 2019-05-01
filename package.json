@@ -8,7 +8,8 @@
     "react-scripts": "2.1.8",
     "srgletterbox-web": "github:SRGSSR/srgletterbox-web#feature/metadata",
     "video.js": "^7.4.1",
-    "videojs": "^1.0.0"
+    "videojs": "^1.0.0",
+    "videojs-contrib-eme": "^3.5.0"
   },
   "scripts": {
     "start": "react-scripts start",
