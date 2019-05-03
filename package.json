@@ -3,23 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4",
-    "react-scripts": "2.1.8",
+    "sass": "^1.19.0",
     "srgletterbox-web": "github:SRGSSR/srgletterbox-web#feature/metadata",
-    "video.js": "^7.4.1",
+    "video.js": "^7.5.4",
     "videojs": "^1.0.0",
     "videojs-contrib-eme": "^3.5.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "sass-watch": "sass --watch src/videojs-components/scss/*.scss src/videojs-components/css/vjs-srgssr-skin.css"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
+  "eslintConfig": {},
   "browserslist": [
     ">0.2%",
     "not dead",

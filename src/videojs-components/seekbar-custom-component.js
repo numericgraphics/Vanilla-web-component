@@ -1,4 +1,4 @@
-import videojs from '../../node_modules/video.js/dist/video.js'
+// import videojs from '../../node_modules/video.js/dist/video.js'
 import {detectmob} from '../utils/userAgentDetection.js'
 
 const SeekBar = videojs.getComponent('SeekBar');
@@ -67,6 +67,7 @@ export class SeekBarCustomComponent extends SeekBar {
 
     handleMouseMove(event) {
         this.bar.timeTooltip.hide();
+        this.player_.currentTime(this.newTime);
         this._calculateNewTime(event);
         this._setPosition();
     }
@@ -101,7 +102,9 @@ export class SeekBarCustomComponent extends SeekBar {
 
     _setPosition() {
         this.bar.update(this.newTime, super.update());
-        this.bar.el_.style.width = this._percentage(this.newTime, this.player_.duration()) + '%';
+        let duration = this.player_.duration() === Infinity ? this.player_.liveTracker.liveWindow() : this.player_.duration();
+        console.log("position", this._percentage(this.newTime, duration) );
+        this.bar.el_.style.width = this._percentage(this.newTime, duration) + '%';
     }
 
     _calculateNewTime(event) {

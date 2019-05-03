@@ -1,4 +1,4 @@
-import videojs from '../../node_modules/video.js/dist/video.js'
+// import videojs from '../../node_modules/video.js/dist/video.js'
 const TimeTooltip = videojs.getComponent('TimeTooltip');
 
 export class TimeTooltipComponent extends TimeTooltip {

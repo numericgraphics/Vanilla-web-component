@@ -3,6 +3,7 @@
 package-lock.json
 
 # User-specific stuff:
+*.map
 .idea/
 *.iml
 .history/

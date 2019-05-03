@@ -1,24 +1,22 @@
-import React, { Component } from 'react';
 
-export class PlayerBase extends Component {
-
-    constructor(props){
-        super(props);
+export class PlayerBase  {
+    constructor(){
+        this._player = null;
     }
 
     get player() {
-           return this.basePlayer;
+        return this._player;
     }
 
-    set player(ref){
-        this.basePlayer = ref;
+    set player(player) {
+        this._player = player;
     }
 
     get currentTime () {
-        return this.basePlayer.currentTime();
+        return this._player.currentTime();
     }
 
     set source(source){
-        this.basePlayer.src(source);
+        this._player.src(source);
     }
 }
