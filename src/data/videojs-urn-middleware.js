@@ -19,8 +19,12 @@ const videojsUrnMiddleware = function (player) {
         let sourceUrl = mediaComposition.resources[resourceIndex].src.toString();
         let tokenizedSource = await tokenService.tokenize(sourceUrl);
         mediaComposition.resources[resourceIndex].src = tokenizedSource;
+
         player.src(tokenizedSource);
         next(null, tokenizedSource);
+
+        // player.src(sourceUrl);
+        // next(null, sourceUrl);
     }
 
     return {

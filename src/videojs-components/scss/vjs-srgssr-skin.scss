@@ -36,49 +36,151 @@ $controlBarHeight: 62px;
     height: $controlBarHeight;
     color: #fff;
     display: grid;
-    grid-template-columns: 20px minmax(40px, auto) 40px auto 1fr 40px 20px;
-    grid-template-rows: 2px 1fr 1fr 2px;
-    grid-auto-flow: row;
-    justify-items: center;
+    grid-template-columns: 20px 40px 40px auto 1fr 40px 20px;
+    grid-template-rows: 2px auto auto 5px;
+    //grid-auto-flow: row;
+    //justify-items: center;
     align-items: center;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
+
+    .vjs-progress-control {
+      grid-column: 2 / span 5;
+      grid-row: 2;
+
+      display: grid;
+      position: relative;
+      left: 0;
+      right: 0;
+      width: 100%;
+      min-height: 20px;
+
+      grid-template-columns: 4fr auto;
+      grid-template-rows: 2px 1fr 1px;
+      align-items: center;
+      grid-row-gap: 5px;
+
+      .vjs-progress-holder {
+        grid-column-start: 1;
+        grid-column-end: 1;
+        grid-row-start: 2;
+        grid-row-end: 3;
+      }
+
+      .vjs-seek-to-live-control{
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 2;
+        grid-row-end: 2;
+        margin-left: 5px;
+        min-width: initial;
+        justify-items: end;
+      }
+    }
+
+      .vjs-play-control {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 3;
+        grid-row-end: 3;
+        justify-items: start;
+      }
+
+      .vjs-volume-panel {
+        grid-column-start: 3;
+        grid-column-end: 4;
+        grid-row-start: 3;
+        grid-row-end: 3;
+        justify-self: start;
+      }
+
+    .vjs-fullscreen-control {
+          grid-column-start: 6;
+          grid-column-end: 6;
+          grid-row-start: 3;
+          grid-row-end: 3;
+          justify-self: end;
+          display: block !important;
+        }
+
+      .vjs-current-time,
+      .vjs-time-divider,
+      .vjs-duration {
+        grid-column-start: 4;
+        grid-column-end:  6;
+        grid-row-start: 3;
+        grid-row-end: 3;
+        display: block !important;
+        justify-self: center!important;
+        //display: none;
+      }
+
+    //.vjs-control-bar .vjs-time-divider,
+    //.vjs-live .vjs-control-bar  .vjs-duration{
+    //  display: none;
+    //}
+
+
+    //.containerControls {
+    //  display: grid;
+    //  position: relative;
+    //  left: 0;
+    //  right: 0;
+    //  grid-template-columns: 20px 40px 1fr 4fr 1fr 20px;
+    //  grid-template-rows: 1fr 2px;
+    //
+    //  justify-items: start;
+    //  align-items: center;
+    //  grid-row-gap: 5px;
+    //  grid-column-gap: 0px;
+    //
+    //  .vjs-play-control {
+    //    grid-column-start: 2;
+    //    grid-column-end: 3;
+    //    grid-row-start: 1;
+    //    grid-row-end: 2;
+    //  }
+    //
+    //  .vjs-volume-panel {
+    //    grid-column-start: 3;
+    //    grid-column-end: 4;
+    //    grid-row-start: 1;
+    //    grid-row-end: 2;
+    //    justify-self: start;
+    //  }
+    //
+    //  .vjs-current-time,
+    //  .vjs-time-divider,
+    //  .vjs-duration {
+    //    //grid-column-start: 4;
+    //    //grid-column-end:  6;
+    //    //grid-row-start: 3;
+    //    //grid-row-end: 4;
+    //    //display: block !important;
+    //    //justify-self: center!important;
+    //    display: none;
+    //  }
+    //
+    //  .vjs-fullscreen-control {
+    //    grid-column-start: 5;
+    //    grid-column-end: 6;
+    //    grid-row-start: 1;
+    //    grid-row-end: 2;
+    //    justify-self: end;
+    //    display: block !important;
+    //  }
+    //
+    //}
   }
+
+
+
+  //  .vjs-control-bar .vjs-time-divider{
+  //    display: none;
+  //  }
+  //}
 
   .vjs-control-bar:hover .srg-segment-container {
     opacity: 1;
-  }
-
-  .vjs-play-control {
-    grid-column-start: 2;
-    grid-column-end: 3;
-    grid-row-start: 3;
-    grid-row-end: 4;
-  }
-
-  .vjs-volume-panel {
-    grid-column-start: 3;
-    grid-column-end: 4;
-    grid-row-start: 3;
-    grid-row-end: 4;
-    justify-self: start;
-  }
-
-  .vjs-progress-control {
-    grid-column-start: 2;
-    grid-column-end: span 5;
-    grid-row-start: 2;
-    grid-row-end: 3;
-    width: 100% !important;
-    height: 7px;
-  }
-
-  .vjs-seek-to-live-control{
-    grid-column-start: 5;
-    grid-column-end: 7;
-    grid-row-start: 2;
-    grid-row-end: 3;
-    display: block !important;
-    justify-self: end;
   }
 
   .vjs-progress-holder {
@@ -113,24 +215,24 @@ $controlBarHeight: 62px;
      color: #000;
    }
 
-  .vjs-current-time,
-  .vjs-time-divider,
-  .vjs-duration {
-    grid-column-start: 4;
-    grid-column-end:  6;
-    grid-row-start: 3;
-    grid-row-end: 4;
-    display: block !important;
-    justify-self: center!important;
-  }
-
-  .vjs-fullscreen-control {
-    grid-column-start: 5;
-    grid-column-end: 7;
-    grid-row-start: 3;
-    grid-row-end: 4;
-    display: block !important;
-  }
+  //.vjs-current-time,
+  //.vjs-time-divider,
+  //.vjs-duration {
+  //  grid-column-start: 4;
+  //  grid-column-end:  6;
+  //  grid-row-start: 3;
+  //  grid-row-end: 4;
+  //  display: block !important;
+  //  justify-self: center!important;
+  //}
+  //
+  //.vjs-fullscreen-control {
+  //  grid-column-start: 5;
+  //  grid-column-end: 7;
+  //  grid-row-start: 3;
+  //  grid-row-end: 4;
+  //  display: block !important;
+  //}
 
   .vjs-fullscreen-control {
     justify-self: end;
@@ -213,6 +315,14 @@ $controlBarHeight: 62px;
   }
 
 }
+
+.vjs-live .vjs-control-bar {
+  .vjs-time-divider,
+  .vjs-duration{
+    display: none!important;
+  }
+}
+
 
 
 

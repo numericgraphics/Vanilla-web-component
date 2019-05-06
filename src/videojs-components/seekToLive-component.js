@@ -35,7 +35,6 @@ class SeekToLiveComponent extends seekToLive {
     }
 
     updateLiveEdgeStatus(e) {
-        console.log("updateLiveEdgeStatus", e);
         // default to live edge
         if (!this.player_.liveTracker || this.player_.liveTracker.atLiveEdge()) {
             this.setAttribute('aria-disabled', true);

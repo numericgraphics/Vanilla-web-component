@@ -32,6 +32,14 @@ export class SeekBarCustomComponent extends SeekBar {
             this.player_.currentTime();
     }
 
+    createEl() {
+        return super.createEl('div', {
+            className: 'vjs-progress-holder'
+        }, {
+            'aria-label': this.localize('Progress Bar')
+        });
+    }
+
     handleMouseDown(event) {
         if (event) {
             event.stopPropagation();

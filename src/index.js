@@ -3,6 +3,7 @@ import {ProgressControlComponent} from "./videojs-components/progress-control-co
 import {SeekBarCustomComponent} from "./videojs-components/seekbar-custom-component.js";
 import SeekToLiveComponent from "./videojs-components/seekToLive-component.js";
 import LiveTrackerComponent from "./videojs-components/liveTracker-component.js";
+import CurrentTimeDisplayComponent from "./videojs-components/currentTimeDisplay-component.js";
 import DataproviderService from "../node_modules/srgletterbox-web/app/dataProvider/services/DataProviderService.js";
 import PerformanceService from "./analytics/PerformanceService.js";
 
@@ -22,12 +23,15 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 children: {
                     PlayToggle: true,
                     VolumePanel: true,
-                    CurrentTimeDisplay: true,
+                    CurrentTimeDisplayComponent: true,
                     TimeDivider: true,
                     DurationDisplay: true,
-                    ProgressControlComponent: true,
-                    LiveDisplay:true,
-                    SeekToLiveComponent:true,
+                    ProgressControlComponent: {
+                        children :{
+                            SeekBarCustomComponent: true,
+                            SeekToLiveComponent:true,
+                        }
+                    },
                     fullscreenToggle: true,
                 }
             }
@@ -37,8 +41,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
     videojs.use('srgssr/urn', videojsUrnMiddleware);
     let player = videojs(elVideo, props, function () {
         let SRGProviders = this.options_.SRGProviders;
+
     });
-    // player.children().filter(children => children.name_ === 'LiveTracker')[0] = new LiveTrackerComponent(player);
     player.src(sourceElement);
 
 
