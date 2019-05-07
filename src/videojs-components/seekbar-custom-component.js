@@ -75,9 +75,11 @@ export class SeekBarCustomComponent extends SeekBar {
 
     handleMouseMove(event) {
         this.bar.timeTooltip.hide();
-        this.player_.currentTime(this.newTime);
         this._calculateNewTime(event);
-        this._setPosition();
+        this.player_.currentTime(this.newTime);
+        if (!this.player_.liveTracker || !this.player_.liveTracker.isLive()) {
+            this._setPosition();
+        }
     }
 
     handleMouseUp(event) {
@@ -94,8 +96,11 @@ export class SeekBarCustomComponent extends SeekBar {
         this.off(doc, 'mouseup', this.handleMouseUp);
         this.off(doc, 'touchmove', this.handleMouseMove);
         this.off(doc, 'touchend', this.handleMouseUp);
-        this.player_.currentTime(this.newTime);
-        this._setPosition();
+
+        if (!this.player_.liveTracker || !this.player_.liveTracker.isLive()) {
+            this.player_.currentTime(this.newTime);
+            this._setPosition();
+        }
 
         if (this.videoWasPlaying) {
             this._silencePromise(this.player_.play());

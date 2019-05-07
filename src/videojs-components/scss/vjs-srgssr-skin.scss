@@ -6,11 +6,16 @@
 $progressHeight: 3px;
 $progressFontSize: 1.4em;
 $progressBorderRadius: 2px;
-$controlBarHeight: 62px;
+$controlBarHeight: 80px;
 
 .video-js {
   width: 100% !important;
   height: auto !important;
+}
+
+.vjs-button > .vjs-icon-placeholder:before {
+  font-size: 2.2em;
+  line-height: 1.67;
 }
 
 .vjs-srgssr-skin {
@@ -40,9 +45,10 @@ $controlBarHeight: 62px;
     height: $controlBarHeight;
     color: #fff;
     display: grid;
-    grid-template-columns: 20px 40px 40px auto 1fr 40px 20px;
-    grid-template-rows: 2px auto auto 5px;
+    grid-template-columns: 20px 40px 40px auto 40px 80px 30px;
+    grid-template-rows: 2px 20px auto 5px;
     align-items: center;
+    justify-items: center;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
 
     .vjs-progress-control {
@@ -76,6 +82,7 @@ $controlBarHeight: 62px;
         margin-left: 5px;
         min-width: initial;
         justify-items: end;
+        padding: 0;
       }
     }
 
@@ -96,12 +103,22 @@ $controlBarHeight: 62px;
     }
 
     .vjs-fullscreen-control {
+      grid-column-start: 5;
+      grid-column-end: 5;
+      grid-row-start: 3;
+      grid-row-end: 3;
+      justify-self: end;
+      display: block !important;
+    }
+
+    .vjs-srgssr-button {
       grid-column-start: 6;
       grid-column-end: 6;
       grid-row-start: 3;
       grid-row-end: 3;
       justify-self: end;
       display: block !important;
+      width: 66px;
     }
 
     .vjs-current-time,
@@ -241,6 +258,13 @@ $controlBarHeight: 62px;
     display: none !important;
   }
 }
+
+.vjs-srgssr-rts, .video-js .vjs-srgssr-rts .vjs-icon-placeholder:before, .video-js .vjs-srgssr-rts .vjs-icon-placeholder {
+  font-family: VideoJS;
+  font-weight: normal;
+  font-style: normal; }
+.video-js .vjs-srgssr-rts .vjs-icon-placeholder:before, .video-js .vjs-srgssr-rts .vjs-icon-placeholder:before {
+  content: "\f121"; }
 
 
 

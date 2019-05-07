@@ -6,12 +6,14 @@ import LiveTrackerComponent from "./videojs-components/liveTracker-component.js"
 import CurrentTimeDisplayComponent from "./videojs-components/currentTimeDisplay-component.js";
 import DataproviderService from "../node_modules/srgletterbox-web/app/dataProvider/services/DataProviderService.js";
 import PerformanceService from "./analytics/PerformanceService.js";
+import SRGSSRButtonComponent from "./videojs-components/SRGSSR-button-component.js";
 
 window.addEventListener("DOMContentLoaded", (event) => {
     let elVideo = document.querySelector('video');
     const sourceElement = {type: 'srgssr/urn', src: elVideo.dataset.urn};
 
     let props = {
+        bu: elVideo.dataset.bu || 'rts',
         techOrder:['html5'],
         liveui: true,
         liveTracker:true,
@@ -33,6 +35,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                         }
                     },
                     fullscreenToggle: true,
+                    SRGSSRButtonComponent: true,
                 }
             }
         },
