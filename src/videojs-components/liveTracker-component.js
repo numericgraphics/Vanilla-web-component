@@ -4,7 +4,6 @@ const Component = videojs.getComponent('Component');
 class LiveTrackerComponent extends Component {
 
     constructor(player, options) {
-        // LiveTracker does not need an element
         const options_ = videojs.mergeOptions({createEl: false}, options);
 
         super(player, options_);
@@ -66,20 +65,10 @@ class LiveTrackerComponent extends Component {
         }
 
         const newSeekEnd = this.seekableEnd();
-
-        // console.log("trackLive_ seekable start", seekable);
-        //     console.log("trackLive_ isBehind_", this.isBehind_());
-        //     console.log("trackLive_ behindLiveEdge", this.behindLiveEdge());
-
-        // console.log("trackLive_ seekable end", seekable.end());
-        // console.log("trackLive_ this.player_", this.player_);
-        // console.log("----------------------------");
-
         // we can only tell if we are behind live, when seekable changes
         // once we detect that seekable has changed we check the new seek
         // end against current time, with a fudge value of half a second.
         if (newSeekEnd !== this.lastSeekEnd_) {
-            console.log("trackLive_ newSeekEnd NOT EQUAL");
             if (this.lastSeekEnd_) {
                 this.seekableIncrement_ = Math.abs(newSeekEnd - this.lastSeekEnd_);
             }
@@ -92,7 +81,6 @@ class LiveTrackerComponent extends Component {
         this.pastSeekEnd_ = this.pastSeekEnd() + 0.03;
 
         if (this.isBehind_() !== this.behindLiveEdge()) {
-            console.log("trackLive_ isBehind_ NOT EQUAL", this.isBehind_());
             this.behindLiveEdge_ = this.isBehind_();
             this.trigger('liveedgechange');
         }
@@ -114,7 +102,6 @@ class LiveTrackerComponent extends Component {
      * start tracking live playback
      */
     startTracking() {
-        console.log("startTracking");
         if (this.isTracking()) {
             return;
         }
@@ -244,6 +231,7 @@ class LiveTrackerComponent extends Component {
      * get what we expect the live current time to be
      */
     liveCurrentTime() {
+        // let
         return this.pastSeekEnd() + this.seekableEnd();
     }
 

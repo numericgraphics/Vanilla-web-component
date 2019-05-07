@@ -14,24 +14,6 @@ class SeekToLiveComponent extends seekToLive {
                 this.on(this.player_.liveTracker, 'liveedgechange', this.updateLiveEdgeStatus);
             }
         });
-
-
-    }
-
-    createEl() {
-        const el = super.createEl('button', {
-            className: 'vjs-seek-to-live-control vjs-control'
-        });
-
-        this.textEl_ = videojs.dom.createEl('span', {
-            className: 'vjs-seek-to-live-text',
-            innerHTML: this.localize('LIVE')
-        }, {
-            'aria-hidden': 'true'
-        });
-
-        el.appendChild(this.textEl_);
-        return el;
     }
 
     updateLiveEdgeStatus(e) {

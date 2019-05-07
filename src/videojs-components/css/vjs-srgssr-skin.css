@@ -2,6 +2,11 @@
   font-family: "srgssr-type-md";
   src: url(../../fonts/srgssr-type-md.ttf);
 }
+.video-js {
+  width: 100% !important;
+  height: auto !important;
+}
+
 .vjs-srgssr-skin {
   font-family: srgssr-type-md;
   position: absolute !important;

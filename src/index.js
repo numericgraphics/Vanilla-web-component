@@ -9,7 +9,7 @@ import PerformanceService from "./analytics/PerformanceService.js";
 
 window.addEventListener("DOMContentLoaded", (event) => {
     let elVideo = document.querySelector('video');
-    const sourceElement = {type: 'srgssr/urn', src: 'urn:rts:video:1967124'}; //rts vod :urn:rts:video:6735513 - rts info : urn:rts:video:1967124
+    const sourceElement = {type: 'srgssr/urn', src: elVideo.dataset.urn};
 
     let props = {
         techOrder:['html5'],
@@ -27,9 +27,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
                     TimeDivider: true,
                     DurationDisplay: true,
                     ProgressControlComponent: {
-                        children :{
+                        children: {
                             SeekBarCustomComponent: true,
-                            SeekToLiveComponent:true,
+                            SeekToLiveComponent: true,
                         }
                     },
                     fullscreenToggle: true,

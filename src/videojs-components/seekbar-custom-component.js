@@ -111,7 +111,6 @@ export class SeekBarCustomComponent extends SeekBar {
     _setPosition() {
         this.bar.update(this.newTime, super.update());
         let duration = this.player_.duration() === Infinity ? this.player_.liveTracker.liveWindow() : this.player_.duration();
-        console.log("position", this._percentage(this.newTime, duration) );
         this.bar.el_.style.width = this._percentage(this.newTime, duration) + '%';
     }
 

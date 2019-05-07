@@ -52,9 +52,6 @@ class VideoJSComponent extends PlayerBase {
 
         this.player = videojs(this.videoElement, props, function onPlayerReady() {
             // let SRGProviders = this.options_.SRGProviders;
-            // SRGProviders.analyticsService.setmark(SRGProviders.analyticsService.INIT_END);
-            // SRGProviders.analyticsService.setMeasurement('initialisation', SRGProviders.analyticsService.GET_URN_START, SRGProviders.analyticsService.INIT_END);
-            // console.log('onPlayerReady getEntriesByName', SRGProviders.analyticsService.getMeasurements());
         });
         // this.player.addClass('vjs-srgssr-skin', 'vjs-show-big-play-button-on-pause');
         console.log("this.player ", this.player );
