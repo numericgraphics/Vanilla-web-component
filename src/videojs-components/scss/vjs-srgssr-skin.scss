@@ -86,6 +86,16 @@ $controlBarHeight: 80px;
       }
     }
 
+    .vjs-srgssr-button {
+      grid-column-start: 6;
+      grid-column-end: 6;
+      grid-row-start: 3;
+      grid-row-end: 3;
+      justify-self: end;
+      display: block !important;
+      width: 66px;
+    }
+
     .vjs-play-control {
       grid-column-start: 2;
       grid-column-end: 3;
@@ -259,12 +269,35 @@ $controlBarHeight: 80px;
   }
 }
 
-.vjs-srgssr-rts, .video-js .vjs-srgssr-rts .vjs-icon-placeholder:before, .video-js .vjs-srgssr-rts .vjs-icon-placeholder {
-  font-family: VideoJS;
-  font-weight: normal;
-  font-style: normal; }
-.video-js .vjs-srgssr-rts .vjs-icon-placeholder:before, .video-js .vjs-srgssr-rts .vjs-icon-placeholder:before {
-  content: "\f121"; }
+@mixin getBuSVG($path) {
+  .vjs-icon-placeholder:before,
+  .vjs-icon-placeholder {
+    font-family: VideoJS;
+    font-weight: normal;
+    font-style: normal; }
+  .vjs-icon-placeholder:before {
+    content: url($path);
+  }
+}
+
+$prefix: vjs-srgssr-;
+.#{$prefix} {
+  &rts {
+    @include getBuSVG('../assets/svg/play-rts.svg');
+  }
+  &srf {
+    @include getBuSVG('../assets/svg/play-srf.svg');
+  }
+  &rsi {
+    @include getBuSVG('../assets/svg/play-rsi.svg');
+  }
+  &rtr {
+    @include getBuSVG('../assets/svg/play-rtr.svg');
+  }
+  &swi{
+    @include getBuSVG('../assets/svg/play-swi.svg');
+  }
+}
 
 
 

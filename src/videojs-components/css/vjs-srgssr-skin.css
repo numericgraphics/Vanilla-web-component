@@ -1,4 +1,3 @@
-@charset "UTF-8";
 @font-face {
   font-family: "srgssr-type-md";
   src: url(../../fonts/srgssr-type-md.ttf);
@@ -72,6 +71,15 @@
   min-width: initial;
   justify-items: end;
   padding: 0;
+}
+.vjs-srgssr-skin .vjs-control-bar .vjs-srgssr-button {
+  grid-column-start: 6;
+  grid-column-end: 6;
+  grid-row-start: 3;
+  grid-row-end: 3;
+  justify-self: end;
+  display: block !important;
+  width: 66px;
 }
 .vjs-srgssr-skin .vjs-control-bar .vjs-play-control {
   grid-column-start: 2;
@@ -209,14 +217,50 @@
   display: none !important;
 }
 
-.vjs-srgssr-rts, .video-js .vjs-srgssr-rts .vjs-icon-placeholder:before, .video-js .vjs-srgssr-rts .vjs-icon-placeholder {
+.vjs-srgssr-rts .vjs-icon-placeholder:before,
+.vjs-srgssr-rts .vjs-icon-placeholder {
   font-family: VideoJS;
   font-weight: normal;
   font-style: normal;
 }
-
-.video-js .vjs-srgssr-rts .vjs-icon-placeholder:before, .video-js .vjs-srgssr-rts .vjs-icon-placeholder:before {
-  content: "";
+.vjs-srgssr-rts .vjs-icon-placeholder:before {
+  content: url("../assets/svg/play-rts.svg");
+}
+.vjs-srgssr-srf .vjs-icon-placeholder:before,
+.vjs-srgssr-srf .vjs-icon-placeholder {
+  font-family: VideoJS;
+  font-weight: normal;
+  font-style: normal;
+}
+.vjs-srgssr-srf .vjs-icon-placeholder:before {
+  content: url("../assets/svg/play-srf.svg");
+}
+.vjs-srgssr-rsi .vjs-icon-placeholder:before,
+.vjs-srgssr-rsi .vjs-icon-placeholder {
+  font-family: VideoJS;
+  font-weight: normal;
+  font-style: normal;
+}
+.vjs-srgssr-rsi .vjs-icon-placeholder:before {
+  content: url("../assets/svg/play-rsi.svg");
+}
+.vjs-srgssr-rtr .vjs-icon-placeholder:before,
+.vjs-srgssr-rtr .vjs-icon-placeholder {
+  font-family: VideoJS;
+  font-weight: normal;
+  font-style: normal;
+}
+.vjs-srgssr-rtr .vjs-icon-placeholder:before {
+  content: url("../assets/svg/play-rtr.svg");
+}
+.vjs-srgssr-swi .vjs-icon-placeholder:before,
+.vjs-srgssr-swi .vjs-icon-placeholder {
+  font-family: VideoJS;
+  font-weight: normal;
+  font-style: normal;
+}
+.vjs-srgssr-swi .vjs-icon-placeholder:before {
+  content: url("../assets/svg/play-swi.svg");
 }
 
 /*# sourceMappingURL=vjs-srgssr-skin.css.map */

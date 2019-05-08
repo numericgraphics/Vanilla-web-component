@@ -7,6 +7,7 @@ import CurrentTimeDisplayComponent from "./videojs-components/currentTimeDisplay
 import DataproviderService from "../node_modules/srgletterbox-web/app/dataProvider/services/DataProviderService.js";
 import PerformanceService from "./analytics/PerformanceService.js";
 import SRGSSRButtonComponent from "./videojs-components/SRGSSR-button-component.js";
+import BigPlayButtonComponent from "./videojs-components/bigPlayButton-component.js";
 
 window.addEventListener("DOMContentLoaded", (event) => {
     let elVideo = document.querySelector('video');
@@ -19,7 +20,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         liveTracker:true,
         children: {
             MediaLoader:true,
-            BigPlayButton: true,
+            BigPlayButtonComponent: true,
             LoadingSpinner:true,
             ControlBar: {
                 children: {

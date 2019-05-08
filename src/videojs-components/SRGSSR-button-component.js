@@ -6,27 +6,15 @@ class SRGSSRButtonComponent extends Button {
     constructor(player, options) {
         super(player, options);
         this.selectedBU = options.playerOptions.bu;
-        console.log("SRGSSRButtonComponent", this.selectedBU);
-        console.log("SRGSSRButtonComponent", options.playerOptions);
+        this.el().classList.add(`vjs-srgssr-${this.selectedBU}`);
     }
 
-
-    /***** videojs css logo bu id
-     // logo-play-rts: 'f121',
-     // logo-play-rtr: 'f122',
-     // logo-play-rsi: 'f123',
-     // logo-play-srf: 'f124',
-     // logo-play-swi: 'f125',
-     ********************************/
     createEl(tag, props = {}, attributes = {}) {
         tag = 'button';
 
-        let cssClass = ` ${this.buildCSSClass()} vjs-srgssr-button vjs-srgssr-rts`;
-        console.log("createEl", cssClass);
-
         props = Object.assign({
             innerHTML: '<span aria-hidden="true" class="vjs-icon-placeholder"></span>',
-            className: cssClass
+            className: `${this.buildCSSClass()} vjs-srgssr-button`,
         }, props);
 
         // Add attributes for button element
