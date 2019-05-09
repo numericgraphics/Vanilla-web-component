@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @font-face {
   font-family: "srgssr-type-md";
   src: url(../../fonts/srgssr-type-md.ttf);
@@ -5,6 +6,7 @@
 .video-js {
   width: 100% !important;
   height: auto !important;
+  overflow: hidden;
 }
 
 .vjs-button > .vjs-icon-placeholder:before {
@@ -211,6 +213,49 @@
 .vjs-srgssr-skin .vjs-button > .vjs-icon-placeholder:before {
   position: relative;
 }
+.vjs-srgssr-skin.video-js .vjs-modal-dialog {
+  background: #020024;
+  background: linear-gradient(0deg, #020024 0%, rgba(0, 0, 0, 0.462622549) 47%, black 100%);
+  overflow: auto;
+}
+.vjs-srgssr-skin .error-display-text-content {
+  margin-top: 30%;
+}
+.vjs-srgssr-skin .modal-dialog-icon-DRM:before {
+  font-family: VideoJS;
+  font-weight: normal;
+  font-style: normal;
+  content: "";
+  top: 45%;
+}
+.vjs-srgssr-skin .modal-dialog-icon-MEDIA:before {
+  font-family: VideoJS;
+  font-weight: normal;
+  font-style: normal;
+  content: "";
+  top: 45%;
+}
+.vjs-srgssr-skin.vjs-has-started.vjs-paused.vjs-show-big-play-button-on-pause .vjs-big-play-button {
+  display: block;
+}
+.vjs-srgssr-skin.vjs-has-started.vjs-paused.vjs-show-big-play-button-on-pause .vjs-big-play-button .vjs-icon-placeholder {
+  display: block;
+  animation: bigPlayButtonIconOpening 1s 0s 1;
+}
+.vjs-srgssr-skin.vjs-has-started .vjs-control-bar {
+  visibility: visible;
+  opacity: 1;
+  bottom: 0px;
+  transition-timing-function: ease-out;
+  transition: visibility 0.5s, opacity 0.5s, bottom 0.3s;
+}
+.vjs-srgssr-skin.vjs-has-started.vjs-user-inactive.vjs-playing .vjs-control-bar {
+  visibility: visible;
+  opacity: 0;
+  bottom: -80px;
+  transition-timing-function: ease-out;
+  transition: visibility 1s, opacity 1s, bottom 2s;
+}
 
 .vjs-live .vjs-control-bar .vjs-time-divider,
 .vjs-live .vjs-control-bar .vjs-duration {
@@ -261,6 +306,44 @@
 }
 .vjs-srgssr-swi .vjs-icon-placeholder:before {
   content: url("../assets/svg/play-swi.svg");
+}
+
+@keyframes bigPlayButtonIconOpening {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  20% {
+    transform: scale(2);
+    opacity: 1;
+  }
+  25% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes bigPlayButtonIconClosing {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+@keyframes bigPlayButtonClosing {
+  from {
+    min-height: none;
+    max-height: none;
+  }
+  to {
+    min-height: 0;
+    max-height: 0;
+  }
 }
 
 /*# sourceMappingURL=vjs-srgssr-skin.css.map */

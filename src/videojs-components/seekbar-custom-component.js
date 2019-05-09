@@ -135,7 +135,7 @@ export class SeekBarCustomComponent extends SeekBar {
 
             this.newTime = seekableStart + (distance * liveTracker.liveWindow());
 
-            if (this.newTime >= seekableEnd) {
+            if (this.newTime >= seekableEnd - 1) {
                 this.newTime = seekableEnd;
             }
 

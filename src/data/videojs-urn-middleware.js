@@ -1,4 +1,5 @@
 import AkamaiTokenService from "../../token/AkamaiTokenService.js";
+import {ERRORTYPE} from "../../errors/errors.js"
 
 const videojsUrnMiddleware = function (player) {
     // player.eme();
@@ -19,6 +20,9 @@ const videojsUrnMiddleware = function (player) {
         let sourceUrl = mediaComposition.resources[resourceIndex].src.toString();
         let tokenizedSource = await tokenService.tokenize(sourceUrl);
         mediaComposition.resources[resourceIndex].src = tokenizedSource;
+        // throw new Error('test ERROR');
+        // console.log("check videojs", player.error({ code: 0, message: 'TEST ERROR' }));
+        player.error(ERRORTYPE.ERROR_DRM_NOT_SUPPORTED_MESSAGE);
 
         player.src(tokenizedSource);
         next(null, tokenizedSource);

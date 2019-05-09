@@ -8,6 +8,7 @@ import DataproviderService from "../node_modules/srgletterbox-web/app/dataProvid
 import PerformanceService from "./analytics/PerformanceService.js";
 import SRGSSRButtonComponent from "./videojs-components/SRGSSR-button-component.js";
 import BigPlayButtonComponent from "./videojs-components/bigPlayButton-component.js";
+import ErrorDisplayComponent from "./videojs-components/errorDisplay-component.js";
 
 window.addEventListener("DOMContentLoaded", (event) => {
     let elVideo = document.querySelector('video');
@@ -38,7 +39,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
                     fullscreenToggle: true,
                     SRGSSRButtonComponent: true,
                 }
-            }
+            },
+            ErrorDisplayComponent:true,
         },
         SRGProviders: {dataService: new DataproviderService(), analyticsService: PerformanceService}
     };

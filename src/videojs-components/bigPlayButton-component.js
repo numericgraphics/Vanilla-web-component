@@ -3,6 +3,12 @@ const BigPlayButton = videojs.getComponent('BigPlayButton');
 export default class BigPlayButtonComponent extends BigPlayButton {
     constructor(player, options) {
         super(player, options);
+        this.on(player, 'play', (event)=>{
+            console.log("play");
+        });
+        this.on(player, 'pause', (event)=>{
+            console.log("pause");
+        });
     }
 
     handleClick(event) {

@@ -11,6 +11,7 @@ $controlBarHeight: 80px;
 .video-js {
   width: 100% !important;
   height: auto !important;
+  overflow: hidden;
 }
 
 .vjs-button > .vjs-icon-placeholder:before {
@@ -143,7 +144,6 @@ $controlBarHeight: 80px;
     }
   }
 
-
   .vjs-control-bar:hover .srg-segment-container {
     opacity: 1;
   }
@@ -172,7 +172,6 @@ $controlBarHeight: 80px;
     .vjs-time-tooltip {
       display: none;
     }
-
   }
 
   .vjs-mouse-display .vjs-time-tooltip {
@@ -260,6 +259,63 @@ $controlBarHeight: 80px;
     position: relative;
   }
 
+  &.video-js .vjs-modal-dialog {
+    background: rgb(2,0,36);
+    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(0,0,0,0.46262254901960786) 47%, rgba(0,0,0,1) 100%);
+    overflow: auto;
+  }
+
+  .error-display-text-content{
+    margin-top: 30%;
+  }
+
+  @mixin getErrorIconSVG($value) {
+    &:before{
+      font-family: VideoJS;
+      font-weight: normal;
+      font-style: normal;
+      content: $value;
+      top: 45%;
+    }
+  }
+
+  $errorPrefix: modal-dialog-icon-;
+  .#{$errorPrefix} {
+    &DRM {
+      @include getErrorIconSVG('\f127');
+    }
+    &MEDIA {
+      @include getErrorIconSVG('\f126');
+    }
+  }
+
+  &.vjs-has-started.vjs-paused.vjs-show-big-play-button-on-pause .vjs-big-play-button {
+    display: block;
+    .vjs-icon-placeholder {
+      display: block;
+      animation: bigPlayButtonIconOpening 1s 0s 1;
+    }
+  }
+
+  @mixin setTransition($visibility, $opacity, $bottom) {
+    transition: visibility $visibility , opacity $opacity , bottom $bottom;
+  }
+
+  &.vjs-has-started .vjs-control-bar {
+    visibility: visible;
+    opacity: 1;
+    bottom: 0px;
+    transition-timing-function: ease-out;
+    @include setTransition(0.5s, 0.5s, 0.3s);
+  }
+
+  &.vjs-has-started.vjs-user-inactive.vjs-playing .vjs-control-bar {
+    visibility: visible;
+    opacity: 0;
+    bottom: -80px;
+    transition-timing-function: ease-out;
+    @include setTransition(1s, 1s, 2s);
+  }
 }
 
 .vjs-live .vjs-control-bar {
@@ -274,7 +330,8 @@ $controlBarHeight: 80px;
   .vjs-icon-placeholder {
     font-family: VideoJS;
     font-weight: normal;
-    font-style: normal; }
+    font-style: normal;
+  }
   .vjs-icon-placeholder:before {
     content: url($path);
   }
@@ -285,19 +342,65 @@ $prefix: vjs-srgssr-;
   &rts {
     @include getBuSVG('../assets/svg/play-rts.svg');
   }
+
   &srf {
     @include getBuSVG('../assets/svg/play-srf.svg');
   }
+
   &rsi {
     @include getBuSVG('../assets/svg/play-rsi.svg');
   }
+
   &rtr {
     @include getBuSVG('../assets/svg/play-rtr.svg');
   }
-  &swi{
+
+  &swi {
     @include getBuSVG('../assets/svg/play-swi.svg');
   }
 }
+
+
+@keyframes bigPlayButtonIconOpening {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  20% {
+    transform: scale(2);
+    opacity: 1;
+  }
+  25% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes bigPlayButtonIconClosing {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+
+@keyframes bigPlayButtonClosing {
+  from {
+    min-height:none;
+    max-height:none;
+  }
+  to {
+    min-height: 0;
+    max-height: 0;
+  }
+}
+
 
 
 
